@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 mixin MyTheme {
   ThemeData myTheme = ThemeData(
     appBarTheme: AppBarTheme(
-      backgroundColor: Color(0xff512DA8),
+      backgroundColor: Color.fromARGB(255, 85, 49, 167),
       elevation: 10,
       centerTitle: true,
       shape: BeveledRectangleBorder(
@@ -20,10 +20,12 @@ mixin MyTheme {
       margin: EdgeInsets.all(10),
     ),
     primaryColor: Color(0xff512DA8),
-    dividerColor: Color(0xffFF5722),
     iconTheme: IconThemeData(
       color: Color(0xff512DA8),
       size: 24,
+    ),
+    buttonTheme: ButtonThemeData(
+      buttonColor: Color.fromARGB(255, 115, 84, 187),
     ),
   );
 }

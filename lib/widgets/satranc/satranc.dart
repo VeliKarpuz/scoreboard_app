@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:scoreboard_app/const.dart';
 
-class UcBesSekiz extends StatefulWidget {
-  const UcBesSekiz({super.key});
+class Satranc extends StatefulWidget {
+  const Satranc({super.key});
 
   @override
-  State<UcBesSekiz> createState() => _UcBesSekizState();
+  State<Satranc> createState() => _SatrancState();
 }
 
-class _UcBesSekizState extends State<UcBesSekiz> {
+class _SatrancState extends State<Satranc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(ConstNames.UcBesSekiz),
+        title: Text(ConstNames.satranc),
       ),
       body: Center(
         child: Text(ConstNames.tamamlanmadi),

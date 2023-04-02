@@ -6,19 +6,10 @@ import 'package:scoreboard_app/widgets/batak/tekli_batak.dart';
 import 'package:scoreboard_app/widgets/batak/uc_bes_sekiz.dart';
 import 'package:scoreboard_app/widgets/my_card.dart';
 
-import '../const.dart';
+import '../../const.dart';
 
 class Batak extends StatelessWidget {
   const Batak({super.key});
-
-  void navigatorPush(context, ) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => 
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +19,24 @@ class Batak extends StatelessWidget {
       ),
       body: Column(children: [
         Expanded(
-          child: Container(
-            child: ListView.builder(
-              itemBuilder: (context, index) => MyCard(
-                  gameName: batakOyunlari[index].toString(),
-                  route: batakOyunlari[index]),
+            child: SizedBox(
+          child: ListView.builder(
+            itemBuilder: (context, index) => Card(
+              child: ListTile(
+                leading: Icon(Icons.gamepad_outlined),
+                title: Text(batakOyunlari[index].toString()),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => batakOyunlari[index],
+                      ));
+                },
+              ),
             ),
+            itemCount: batakOyunlari.length,
           ),
-        )
+        ))
       ]),
     );
   }
