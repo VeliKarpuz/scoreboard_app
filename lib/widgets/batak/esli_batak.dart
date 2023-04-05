@@ -16,7 +16,7 @@ class _EsliBatakState extends State<EsliBatak> {
         title: const Text(ConstNames.esliBatak),
       ),
       body: const Center(
-        child: Text(ConstNames.tamamlanmadi),
+        child: Text("Üzerinde Çalışılıyor..."),
       ),
     );
   }

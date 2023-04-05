@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget with MyTheme {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: myTheme,
-      home: MyHomePage(),
+      home: const MyHomePage(),
       title: ConstNames.title,
     );
   }

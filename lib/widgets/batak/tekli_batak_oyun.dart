@@ -1,9 +1,8 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scoreboard_app/const.dart';
 import 'package:scoreboard_app/widgets/puan.dart';
+import '../score_column.dart';
 
 class TekliBatakOyun extends StatefulWidget {
   final String oyuncu1;
@@ -44,39 +43,16 @@ class _TekliBatakOyunState extends State<TekliBatakOyun> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-          onPressed: () => newMethod(context), child: Icon(Icons.add)),
-      backgroundColor: Color.fromARGB(248, 228, 187, 197),
+          onPressed: () => newScoreEntry(context),
+          child: const Icon(Icons.add)),
+      backgroundColor: const Color.fromARGB(248, 228, 187, 197),
       appBar: AppBar(
         actions: [
           IconButton(
             onPressed: () {
-              showDialog<String>(
-                context: context,
-                builder: (BuildContext context) => AlertDialog(
-                  title: const Text('Yeni Oyun'),
-                  content: const Text(
-                      'Bu oyun silinecek ve yeni bir oyun başlatılacak. Devam etmek istiyor musunuz?'),
-                  actions: <Widget>[
-                    TextButton(
-                      onPressed: () => Navigator.pop(context, 'Cancel'),
-                      child: const Text('Vazgeç'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context, 'OK');
-                        oyuncu1Puan.clear();
-                        oyuncu2Puan.clear();
-                        oyuncu3Puan.clear();
-                        oyuncu4Puan.clear();
-                        setState(() {});
-                      },
-                      child: const Text('Devam'),
-                    ),
-                  ],
-                ),
-              );
+              refreshButton(context);
             },
-            icon: Icon(FontAwesomeIcons.arrowsRotate),
+            icon: const Icon(FontAwesomeIcons.arrowsRotate),
           )
         ],
         title: const Text(ConstNames.tekliBatak),
@@ -109,59 +85,51 @@ class _TekliBatakOyunState extends State<TekliBatakOyun> {
     );
   }
 
-  Future<dynamic> newMethod(BuildContext context) {
+  Future<String?> refreshButton(BuildContext context) {
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Yeni Oyun'),
+        content: const Text(
+            'Bu oyun silinecek ve yeni bir oyun başlatılacak. Devam etmek istiyor musunuz?'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'Cancel'),
+            child: const Text('Vazgeç'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context, 'OK');
+              oyuncu1Puan.clear();
+              oyuncu2Puan.clear();
+              oyuncu3Puan.clear();
+              oyuncu4Puan.clear();
+              setState(() {});
+            },
+            child: const Text('Devam'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<dynamic> newScoreEntry(BuildContext context) {
     return showDialog<dynamic>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Center(child: const Text("Puanlar")),
+        title: const Center(child: Text("Puanlar")),
         content: SizedBox(
           height: 300,
           child: Column(
             children: [
-              SizedBox(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(widget.oyuncu1),
-                    SizedBox(
-                      child: puan1,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(widget.oyuncu2),
-                    SizedBox(
-                      child: puan2,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(widget.oyuncu3),
-                    SizedBox(
-                      child: puan3,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(widget.oyuncu4),
-                    SizedBox(
-                      child: puan4,
-                    ),
-                  ],
-                ),
-              ),
+              ScoreEntryRow(
+                  widget: widget, puan1: puan1, oyuncu: widget.oyuncu1),
+              ScoreEntryRow(
+                  widget: widget, puan1: puan2, oyuncu: widget.oyuncu2),
+              ScoreEntryRow(
+                  widget: widget, puan1: puan3, oyuncu: widget.oyuncu3),
+              ScoreEntryRow(
+                  widget: widget, puan1: puan4, oyuncu: widget.oyuncu4),
             ],
           ),
         ),
@@ -206,43 +174,29 @@ class _TekliBatakOyunState extends State<TekliBatakOyun> {
   }
 }
 
-class ScoreColumn extends StatelessWidget {
-  ScoreColumn({
+class ScoreEntryRow extends StatelessWidget {
+  const ScoreEntryRow({
     super.key,
-    required this.name,
-    required this.oyuncuPuan,
-    required this.toplamPuan,
+    required this.widget,
+    required this.puan1,
+    required this.oyuncu,
   });
 
-  final String name;
-  final List<int> oyuncuPuan;
-  late int toplamPuan = 0;
+  final TekliBatakOyun widget;
+  final Puan puan1;
+  final String oyuncu;
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SizedBox(
-        child: Column(
-          children: [
-            Text(name),
-            SizedBox(
-              height: 10,
-            ),
-            Text(toplamPuan.toString()),
-            Divider(thickness: 2, color: Colors.black),
-            Expanded(
-              child: ListView.separated(
-                separatorBuilder: (context, index) =>
-                    Divider(thickness: 1, endIndent: 10, color: Colors.black),
-                itemBuilder: (context, index) => Center(
-                  child: SizedBox(
-                      height: 20, child: Text(oyuncuPuan[index].toString())),
-                ),
-                itemCount: oyuncuPuan.length,
-              ),
-            ),
-          ],
-        ),
+    return SizedBox(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Text(oyuncu),
+          SizedBox(
+            child: puan1,
+          ),
+        ],
       ),
     );
   }
