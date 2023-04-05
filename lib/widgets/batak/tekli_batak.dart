@@ -11,10 +11,10 @@ class TekliBatak extends StatefulWidget {
 }
 
 class _TekliBatakState extends State<TekliBatak> {
-  final TextEditingController oyuncu1 = TextEditingController();
-  final TextEditingController oyuncu2 = TextEditingController();
-  final TextEditingController oyuncu3 = TextEditingController();
-  final TextEditingController oyuncu4 = TextEditingController();
+  final TextEditingController oyuncu1 = TextEditingController(text: "Oyuncu 1");
+  final TextEditingController oyuncu2 = TextEditingController(text: "Oyuncu 2");
+  final TextEditingController oyuncu3 = TextEditingController(text: "Oyuncu 3");
+  final TextEditingController oyuncu4 = TextEditingController(text: "Oyuncu 4");
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,12 @@ class _TekliBatakState extends State<TekliBatak> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => TekliBatakOyun(oyuncu1: oyuncu1.text),
+                    builder: (context) => TekliBatakOyun(
+                      oyuncu1: oyuncu1.text,
+                      oyuncu2: oyuncu2.text,
+                      oyuncu3: oyuncu3.text,
+                      oyuncu4: oyuncu4.text,
+                    ),
                   ),
                 );
               },
@@ -58,8 +63,11 @@ class _TekliBatakState extends State<TekliBatak> {
 }
 
 class MyTextFormField extends StatelessWidget {
-  const MyTextFormField(
-      {super.key, required this.editing, required this.playerName});
+  const MyTextFormField({
+    super.key,
+    required this.editing,
+    required this.playerName,
+  });
 
   final TextEditingController editing;
   final String playerName;
