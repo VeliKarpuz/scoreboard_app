@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 
 class Puan extends StatefulWidget {
@@ -23,15 +21,15 @@ class _PuanState extends State<Puan> {
         children: [
           OutlinedButton(
             style: OutlinedButton.styleFrom(
-              minimumSize: Size(30, 30),
-              maximumSize: Size(50, 50),
+              minimumSize: const Size(30, 30),
+              maximumSize: const Size(50, 50),
             ),
             onPressed: () {
               setState(() {
                 scoreChange(true);
               });
             },
-            child: Icon(Icons.add),
+            child: const Icon(Icons.add),
           ),
           SizedBox(
             width: 40,
@@ -41,15 +39,15 @@ class _PuanState extends State<Puan> {
           ),
           OutlinedButton(
             style: OutlinedButton.styleFrom(
-              minimumSize: Size(30, 30),
-              maximumSize: Size(50, 50),
+              minimumSize: const Size(30, 30),
+              maximumSize: const Size(50, 50),
             ),
             onPressed: () {
               setState(() {
                 scoreChange(false);
               });
             },
-            child: Icon(Icons.remove),
+            child: const Icon(Icons.remove),
           ),
         ],
       ),

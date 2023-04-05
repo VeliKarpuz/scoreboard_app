@@ -13,9 +13,9 @@ class _EsliBatakState extends State<EsliBatak> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(ConstNames.esliBatak),
+        title: const Text(ConstNames.esliBatak),
       ),
-      body: Center(
+      body: const Center(
         child: Text(ConstNames.tamamlanmadi),
       ),
     );

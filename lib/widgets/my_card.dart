@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:scoreboard_app/widgets/batak/batak.dart';
 import 'package:scoreboard_app/widgets/okey/okey.dart';
@@ -16,7 +14,7 @@ class MyCardList extends StatelessWidget {
         child: ListView.builder(
           itemBuilder: (context, index) => Card(
             child: ListTile(
-              leading: Icon(Icons.games),
+              leading: const Icon(Icons.games),
               title: Text(routes[index].toString()),
               onTap: () {
                 navigatorPush(context, routes[index]);
@@ -31,10 +29,10 @@ class MyCardList extends StatelessWidget {
 }
 
 List<Widget> routes = [
-  Batak(),
-  King(),
-  Okey(),
-  Satranc(),
+  const Batak(),
+  const King(),
+  const Okey(),
+  const Satranc(),
 ];
 navigatorPush(context, Widget route) {
   Navigator.push(

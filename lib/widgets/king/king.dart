@@ -13,9 +13,9 @@ class _KingState extends State<King> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(ConstNames.king),
+        title: const Text(ConstNames.king),
       ),
-      body: Center(
+      body: const Center(
         child: Text(ConstNames.tamamlanmadi),
       ),
     );

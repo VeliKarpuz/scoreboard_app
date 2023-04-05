@@ -15,7 +15,7 @@ class _UcBesSekizState extends State<UcBesSekiz> {
       appBar: AppBar(
         title: const Text(ConstNames.UcBesSekiz),
       ),
-      body: Center(
+      body: const Center(
         child: Text(ConstNames.tamamlanmadi),
       ),
     );

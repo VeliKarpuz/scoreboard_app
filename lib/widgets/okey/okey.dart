@@ -13,9 +13,9 @@ class _OkeyState extends State<Okey> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(ConstNames.okey),
+        title: const Text(ConstNames.okey),
       ),
-      body: Center(
+      body: const Center(
         child: Text(ConstNames.tamamlanmadi),
       ),
     );

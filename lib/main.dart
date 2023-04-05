@@ -1,7 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables, must_be_immutable, constant_identifier_names
-
 import 'package:flutter/material.dart';
-import 'package:scoreboard_app/widgets/batak/batak.dart';
 import 'package:scoreboard_app/widgets/my_card.dart';
 import 'package:scoreboard_app/const.dart';
 import './theme.dart';
@@ -22,7 +19,7 @@ class MyApp extends StatelessWidget with MyTheme {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({super.key});
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -33,9 +30,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(ConstNames.title),
+        title: const Text(ConstNames.title),
       ),
-      body: Column(children: [MyCardList()]),
+      body: Column(children: const [MyCardList()]),
     );
   }
 }

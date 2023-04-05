@@ -202,7 +202,6 @@ class _TekliBatakOyunState extends State<TekliBatakOyun> {
     puan2.selectedScore = 0;
     puan3.selectedScore = 0;
     puan4.selectedScore = 0;
-    print(oyuncu2Puan);
     setState(() {});
   }
 }
@@ -217,7 +216,7 @@ class ScoreColumn extends StatelessWidget {
 
   final String name;
   final List<int> oyuncuPuan;
-  int toplamPuan = 0;
+  late int toplamPuan = 0;
 
   @override
   Widget build(BuildContext context) {

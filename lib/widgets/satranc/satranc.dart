@@ -13,9 +13,9 @@ class _SatrancState extends State<Satranc> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(ConstNames.satranc),
+        title: const Text(ConstNames.satranc),
       ),
-      body: Center(
+      body: const Center(
         child: Text(ConstNames.tamamlanmadi),
       ),
     );
