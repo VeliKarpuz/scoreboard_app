@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scoreboard_app/const.dart';
 import 'package:scoreboard_app/widgets/puan.dart';
-import '../score_column.dart';
+import 'package:scoreboard_app/widgets/score_entry_row.dart';
+import '../../score_column.dart';
 
 class TekliBatakOyun extends StatefulWidget {
   final String oyuncu1;
@@ -43,7 +44,7 @@ class _TekliBatakOyunState extends State<TekliBatakOyun> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-          onPressed: () => newScoreEntry(context),
+          onPressed: () => floatingScoreEntry(context),
           child: const Icon(Icons.add)),
       backgroundColor: const Color.fromARGB(248, 228, 187, 197),
       appBar: AppBar(
@@ -58,26 +59,26 @@ class _TekliBatakOyunState extends State<TekliBatakOyun> {
         title: const Text(ConstNames.tekliBatak),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        padding: const EdgeInsets.symmetric(vertical: 20.0),
         child: Row(children: [
           ScoreColumn(
             name: widget.oyuncu1,
-            toplamPuan: topla(oyuncu1Puan),
+            toplamPuan: ConstNames.topla(oyuncu1Puan),
             oyuncuPuan: oyuncu1Puan,
           ),
           ScoreColumn(
             name: widget.oyuncu2,
-            toplamPuan: topla(oyuncu2Puan),
+            toplamPuan: ConstNames.topla(oyuncu2Puan),
             oyuncuPuan: oyuncu2Puan,
           ),
           ScoreColumn(
             name: widget.oyuncu3,
-            toplamPuan: topla(oyuncu3Puan),
+            toplamPuan: ConstNames.topla(oyuncu3Puan),
             oyuncuPuan: oyuncu3Puan,
           ),
           ScoreColumn(
             name: widget.oyuncu4,
-            toplamPuan: topla(oyuncu4Puan),
+            toplamPuan: ConstNames.topla(oyuncu4Puan),
             oyuncuPuan: oyuncu4Puan,
           ),
         ]),
@@ -94,12 +95,12 @@ class _TekliBatakOyunState extends State<TekliBatakOyun> {
             'Bu oyun silinecek ve yeni bir oyun başlatılacak. Devam etmek istiyor musunuz?'),
         actions: <Widget>[
           TextButton(
-            onPressed: () => Navigator.pop(context, 'Cancel'),
+            onPressed: () => Navigator.pop(context),
             child: const Text('Vazgeç'),
           ),
           TextButton(
             onPressed: () {
-              Navigator.pop(context, 'OK');
+              Navigator.pop(context);
               oyuncu1Puan.clear();
               oyuncu2Puan.clear();
               oyuncu3Puan.clear();
@@ -113,7 +114,7 @@ class _TekliBatakOyunState extends State<TekliBatakOyun> {
     );
   }
 
-  Future<dynamic> newScoreEntry(BuildContext context) {
+  Future<dynamic> floatingScoreEntry(BuildContext context) {
     return showDialog<dynamic>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -123,13 +124,25 @@ class _TekliBatakOyunState extends State<TekliBatakOyun> {
           child: Column(
             children: [
               ScoreEntryRow(
-                  widget: widget, puan1: puan1, oyuncu: widget.oyuncu1),
+                widget: widget,
+                puan: puan1,
+                oyuncu: widget.oyuncu1,
+              ),
               ScoreEntryRow(
-                  widget: widget, puan1: puan2, oyuncu: widget.oyuncu2),
+                widget: widget,
+                puan: puan2,
+                oyuncu: widget.oyuncu2,
+              ),
               ScoreEntryRow(
-                  widget: widget, puan1: puan3, oyuncu: widget.oyuncu3),
+                widget: widget,
+                puan: puan3,
+                oyuncu: widget.oyuncu3,
+              ),
               ScoreEntryRow(
-                  widget: widget, puan1: puan4, oyuncu: widget.oyuncu4),
+                widget: widget,
+                puan: puan4,
+                oyuncu: widget.oyuncu4,
+              ),
             ],
           ),
         ),
@@ -171,33 +184,5 @@ class _TekliBatakOyunState extends State<TekliBatakOyun> {
     puan3.selectedScore = 0;
     puan4.selectedScore = 0;
     setState(() {});
-  }
-}
-
-class ScoreEntryRow extends StatelessWidget {
-  const ScoreEntryRow({
-    super.key,
-    required this.widget,
-    required this.puan1,
-    required this.oyuncu,
-  });
-
-  final TekliBatakOyun widget;
-  final Puan puan1;
-  final String oyuncu;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Text(oyuncu),
-          SizedBox(
-            child: puan1,
-          ),
-        ],
-      ),
-    );
   }
 }

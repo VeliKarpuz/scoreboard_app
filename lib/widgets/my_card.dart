@@ -32,7 +32,7 @@ List<Widget> routes = [
   const Batak(),
   const King(),
   const Okey(),
-  const Satranc(),
+  Satranc(),
 ];
 navigatorPush(context, Widget route) {
   Navigator.push(

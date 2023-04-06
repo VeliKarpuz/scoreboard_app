@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:scoreboard_app/widgets/batak/esli_batak.dart';
-import 'package:scoreboard_app/widgets/batak/tekli_batak.dart';
-import 'package:scoreboard_app/widgets/batak/uc_bes_sekiz.dart';
+import 'package:scoreboard_app/widgets/batak/esli_batak/esli_batak.dart';
+import 'package:scoreboard_app/widgets/batak/tekli_batak/tekli_batak.dart';
+import 'package:scoreboard_app/widgets/batak/uc_bes_sekiz/uc_bes_sekiz.dart';
 import '../../const.dart';
 
 class Batak extends StatelessWidget {
@@ -39,7 +39,7 @@ class Batak extends StatelessWidget {
 }
 
 List<Widget> batakOyunlari = [
-  const TekliBatak(),
-  const EsliBatak(),
-  const UcBesSekiz(),
+  TekliBatak(),
+  EsliBatak(),
+  UcBesSekiz(),
 ];

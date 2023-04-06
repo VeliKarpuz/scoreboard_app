@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scoreboard_app/widgets/my_card.dart';
 import 'package:scoreboard_app/const.dart';
+import 'package:scoreboard_app/widgets/satranc/satranc_oyun.dart';
 import './theme.dart';
 
 void main() => runApp(MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget with MyTheme {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: myTheme,
-      home: const MyHomePage(),
+      home: const SatrancOyun(oyuncu1: "oyuncu1", oyuncu2: "oyuncu2"),
       title: ConstNames.title,
     );
   }

@@ -1,22 +1,30 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:scoreboard_app/const.dart';
+import 'package:scoreboard_app/widgets/my_text_form.dart';
 
-class Satranc extends StatefulWidget {
-  const Satranc({super.key});
+class Satranc extends StatelessWidget {
+  final TextEditingController oyuncu1 = TextEditingController();
+  final TextEditingController oyuncu2 = TextEditingController();
 
-  @override
-  State<Satranc> createState() => _SatrancState();
-}
+  Satranc({super.key});
 
-class _SatrancState extends State<Satranc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(ConstNames.satranc),
       ),
-      body: const Center(
-        child: Text(ConstNames.tamamlanmadi),
+      body: Column(
+        children: [
+          MyTextFormField(editing: oyuncu1, playerName: "Oyuncu 1"),
+          MyTextFormField(editing: oyuncu2, playerName: "Oyuncu 2"),
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text(ConstNames.kaydet),
+          )
+        ],
       ),
     );
   }
