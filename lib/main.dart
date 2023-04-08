@@ -13,7 +13,8 @@ class MyApp extends StatelessWidget with MyTheme {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: myTheme,
-      home: const SatrancOyun(oyuncu1: "oyuncu1", oyuncu2: "oyuncu2"),
+      home: const SatrancOyun(
+          oyuncu1: "oyuncu1", oyuncu2: "oyuncu2", minute: 5, second: 10),
       title: ConstNames.title,
     );
   }
