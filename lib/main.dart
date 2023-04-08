@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scoreboard_app/widgets/deneme.dart';
 import 'package:scoreboard_app/widgets/my_card.dart';
 import 'package:scoreboard_app/const.dart';
 import 'package:scoreboard_app/widgets/satranc/satranc_oyun.dart';
@@ -13,8 +14,7 @@ class MyApp extends StatelessWidget with MyTheme {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: myTheme,
-      home: const SatrancOyun(
-          oyuncu1: "oyuncu1", oyuncu2: "oyuncu2", minute: 5, second: 10),
+      home: Deneme(moveSeconds: 3),
       title: ConstNames.title,
     );
   }

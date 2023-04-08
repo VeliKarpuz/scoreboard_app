@@ -20,8 +20,12 @@ class SatrancOyun extends StatefulWidget {
 }
 
 class _SatrancOyunState extends State<SatrancOyun> {
-  final stopWatchTimer = StopWatchTimer(mode: StopWatchMode.countDown);
-  String displayTime = "";
+  static final stopWatchTimer = StopWatchTimer(mode: StopWatchMode.countDown);
+  String displayTime = StopWatchTimer.getDisplayTime(
+    stopWatchTimer.rawTime.value,
+    hours: false,
+    minuteRightBreak: ".",
+  );
   // stopRes() {
   //   stopWatchTimer.onStopTimer();
   //   stopWatchTimer.setPresetSecondTime(widget.second);
@@ -31,8 +35,8 @@ class _SatrancOyunState extends State<SatrancOyun> {
   stopRes() {
     stopWatchTimer.onStopTimer();
     stopWatchTimer.setPresetTime(mSec: 10000);
-    setState(() {});
     print(displayTime);
+    setState(() {});
   }
 
   @override
@@ -81,8 +85,10 @@ class _SatrancOyunState extends State<SatrancOyun> {
                       displayTime = StopWatchTimer.getDisplayTime(value,
                           hours: false, minuteRightBreak: ".");
                       return Center(
-                        child:
-                            Text(displayTime, style: TextStyle(fontSize: 50)),
+                        child: Text(
+                          displayTime,
+                          style: const TextStyle(fontSize: 50),
+                        ),
                       );
                     },
                   ),
