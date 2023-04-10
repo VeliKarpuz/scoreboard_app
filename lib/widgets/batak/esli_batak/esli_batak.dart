@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:scoreboard_app/const.dart';
 import 'package:scoreboard_app/widgets/batak/esli_batak/esli_batak_oyun.dart';
-import 'package:scoreboard_app/widgets/common%20widgets/my_card_list.dart';
-import 'package:scoreboard_app/widgets/common%20widgets/my_text_form.dart';
+import 'package:scoreboard_app/widgets/common_widgets/my_card_list.dart';
+import 'package:scoreboard_app/widgets/common_widgets/my_text_form.dart';
 
 class EsliBatak extends StatelessWidget {
   TextEditingController takim1 = TextEditingController(text: "Takım 1");

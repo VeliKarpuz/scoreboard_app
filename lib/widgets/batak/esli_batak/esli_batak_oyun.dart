@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scoreboard_app/const.dart';
-import 'package:scoreboard_app/widgets/common%20widgets/puan.dart';
-import 'package:scoreboard_app/widgets/common%20widgets/score_column.dart';
-import 'package:scoreboard_app/widgets/common%20widgets/score_entry_row.dart';
+import 'package:scoreboard_app/widgets/common_widgets/puan.dart';
+import 'package:scoreboard_app/widgets/common_widgets/score_column.dart';
+import 'package:scoreboard_app/widgets/common_widgets/score_entry_row.dart';
 
 class EsliBatakOyun extends StatefulWidget {
   final String takim1;

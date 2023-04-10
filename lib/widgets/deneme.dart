@@ -3,72 +3,118 @@ import 'package:flutter/material.dart';
 
 class Deneme extends StatefulWidget {
   final int moveSeconds;
-  const Deneme({super.key, required this.moveSeconds});
+  const Deneme({
+    super.key,
+    required this.moveSeconds,
+  });
 
   @override
   State<Deneme> createState() => _DenemeState();
 }
 
 class _DenemeState extends State<Deneme> {
-  static const countDownDuration = Duration(minutes: 1);
-  Duration duration = Duration();
-  Timer? timer;
-  bool isCountDown = true;
+  final countDownDuration = const Duration(minutes: 1);
+  final countDownDuration2 = const Duration(minutes: 1);
+  Duration duration1 = const Duration();
+  Duration duration2 = const Duration();
+  Timer? timer1;
+  Timer? timer2;
+  bool player1Active = true;
+  // bool player2Active = false;
   @override
   void initState() {
     super.initState();
-    // startTimer();
-    reset();
+    duration1 = countDownDuration;
+    duration2 = countDownDuration2;
   }
 
-  void reset() {
-    if (isCountDown) {
-      setState(() {
-        duration = countDownDuration;
-      });
-    } else {
-      setState(() {
-        duration = Duration();
-      });
-    }
+  /// Bir oyuncu arka arkaya basamamalı
+  /// Restart game tuşu yapılacak
+  /// oyuncu isimleri yapılacak
+  /// ayarları değiştir tuşu yapılacak
+  /// önceki oyunların kaydı tutulacak
+  /// aktif olan oyuncunun tarafı seçili renk ile yanacak diğeri pasif renkte duracak.
+
+  startTimer1() {
+    timer1 = Timer.periodic(
+      const Duration(seconds: 1),
+      (timer) => setState(
+        () {
+          final seconds = duration1.inSeconds - 1;
+          if (seconds < 0) {
+            timer.cancel();
+          } else {
+            duration1 = Duration(seconds: seconds);
+          }
+        },
+      ),
+    );
   }
 
-  void startTimer() {
-    timer = Timer.periodic(const Duration(seconds: 1), (_) => addTime());
-    duration = Duration(seconds: duration.inSeconds + widget.moveSeconds);
-  }
-
-  void addTime() {
-    final addSeconds = isCountDown ? -1 : 1;
-    setState(() {
-      final seconds = duration.inSeconds + addSeconds;
-      if (seconds < 0) {
-        timer?.cancel();
-      } else {
-        duration = Duration(seconds: seconds);
-      }
-    });
+  startTimer2() {
+    timer2 = Timer.periodic(
+      const Duration(seconds: 1),
+      (timer) => setState(
+        () {
+          final seconds = duration2.inSeconds - 1;
+          if (seconds < 0) {
+            timer.cancel();
+          } else {
+            duration2 = Duration(seconds: seconds);
+          }
+        },
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(),
+        body: Column(
           children: [
-            buildTime(),
-            ElevatedButton(
-                onPressed: () {
-                  startTimer();
+            Expanded(
+              flex: 5,
+              child: InkWell(
+                onTap: () {
+                  startTimer2();
+                  timer1?.cancel();
                 },
-                child: Text("başla"))
+                child: Container(
+                  color: Colors.blue,
+                  child: Center(
+                    child: buildTime(duration1),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: Container(),
+            ),
+            Expanded(
+              flex: 5,
+              child: InkWell(
+                onTap: () {
+                  startTimer1();
+                  timer2?.cancel();
+                },
+                child: Container(
+                  color: Colors.red,
+                  child: Center(
+                    child: buildTime(duration2),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget buildTime() {
+  Widget buildTime(Duration duration) {
     String twoDigits(int n) => n.toString().padLeft(2, "0");
     final seconds = twoDigits(duration.inSeconds.remainder(60));
     final minutes = twoDigits(duration.inMinutes.remainder(60));

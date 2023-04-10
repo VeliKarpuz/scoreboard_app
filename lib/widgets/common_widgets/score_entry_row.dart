@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scoreboard_app/widgets/common%20widgets/puan.dart';
+import 'package:scoreboard_app/widgets/common_widgets/puan.dart';
 
 class ScoreEntryRow extends StatelessWidget {
   const ScoreEntryRow({

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:scoreboard_app/const.dart';
 import 'package:scoreboard_app/widgets/batak/tekli_batak/tekli_batak_oyun.dart';
-import 'package:scoreboard_app/widgets/common%20widgets/my_text_form.dart';
+import 'package:scoreboard_app/widgets/common_widgets/my_text_form.dart';
 
 class TekliBatak extends StatefulWidget {
   const TekliBatak({super.key});

@@ -1,12 +1,12 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:scoreboard_app/const.dart';
-import 'package:scoreboard_app/widgets/common%20widgets/my_text_form.dart';
+import 'package:scoreboard_app/widgets/common_widgets/my_card_list.dart';
+import 'package:scoreboard_app/widgets/common_widgets/my_text_form.dart';
+import 'package:scoreboard_app/widgets/deneme.dart';
 
 class Satranc extends StatelessWidget {
-  final TextEditingController oyuncu1 = TextEditingController();
-  final TextEditingController oyuncu2 = TextEditingController();
+  final TextEditingController oyuncu1 = TextEditingController(text: "Oyuncu1");
+  final TextEditingController oyuncu2 = TextEditingController(text: "Oyuncu 2");
 
   Satranc({super.key});
 
@@ -21,7 +21,9 @@ class Satranc extends StatelessWidget {
           MyTextFormField(editing: oyuncu1, playerName: "Oyuncu 1"),
           MyTextFormField(editing: oyuncu2, playerName: "Oyuncu 2"),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              navigatorPush(context, Deneme(moveSeconds: 0));
+            },
             child: const Text(ConstNames.kaydet),
           )
         ],
