@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:scoreboard_app/const.dart';
 import 'package:scoreboard_app/widgets/batak/tekli_batak/tekli_batak_oyun.dart';
-import 'package:scoreboard_app/widgets/my_text_form.dart';
+import 'package:scoreboard_app/widgets/common%20widgets/my_text_form.dart';
 
 class TekliBatak extends StatefulWidget {
   const TekliBatak({super.key});
@@ -38,29 +38,33 @@ class _TekliBatakState extends State<TekliBatak> {
                   ],
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => TekliBatakOyun(
-                        oyuncu1: oyuncu1.text,
-                        oyuncu2: oyuncu2.text,
-                        oyuncu3: oyuncu3.text,
-                        oyuncu4: oyuncu4.text,
-                      ),
-                    ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 123, 107, 160),
-                ),
-                child: const Text(ConstNames.kaydet),
-              )
+              kaydetButton(context)
             ],
           ),
         ),
       ),
+    );
+  }
+
+  ElevatedButton kaydetButton(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => TekliBatakOyun(
+              oyuncu1: oyuncu1.text,
+              oyuncu2: oyuncu2.text,
+              oyuncu3: oyuncu3.text,
+              oyuncu4: oyuncu4.text,
+            ),
+          ),
+        );
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color.fromARGB(255, 123, 107, 160),
+      ),
+      child: const Text(ConstNames.kaydet),
     );
   }
 }

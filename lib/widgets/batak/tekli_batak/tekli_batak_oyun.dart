@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scoreboard_app/const.dart';
-import 'package:scoreboard_app/widgets/puan.dart';
-import 'package:scoreboard_app/widgets/score_entry_row.dart';
-import '../../score_column.dart';
+import 'package:scoreboard_app/widgets/common%20widgets/puan.dart';
+import 'package:scoreboard_app/widgets/common%20widgets/score_entry_row.dart';
+import '../../common widgets/score_column.dart';
 
 class TekliBatakOyun extends StatefulWidget {
   final String oyuncu1;
@@ -31,14 +31,6 @@ class _TekliBatakOyunState extends State<TekliBatakOyun> {
   Puan puan2 = Puan();
   Puan puan3 = Puan();
   Puan puan4 = Puan();
-
-  int topla(List<int> list) {
-    int toplam = 0;
-    for (int i = 0; i < list.length; i++) {
-      toplam = toplam + list[i];
-    }
-    return toplam;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -165,7 +157,7 @@ class _TekliBatakOyunState extends State<TekliBatakOyun> {
   }
 
   void cancelMethod(BuildContext context) {
-    Navigator.pop(context, 'Cancel');
+    Navigator.pop(context);
     puan1.selectedScore = 0;
     puan2.selectedScore = 0;
     puan3.selectedScore = 0;
@@ -174,7 +166,7 @@ class _TekliBatakOyunState extends State<TekliBatakOyun> {
   }
 
   void okMethod(BuildContext context) {
-    Navigator.pop(context, 'OK');
+    Navigator.pop(context);
     oyuncu1Puan.add(puan1.selectedScore);
     oyuncu2Puan.add(puan2.selectedScore);
     oyuncu3Puan.add(puan3.selectedScore);

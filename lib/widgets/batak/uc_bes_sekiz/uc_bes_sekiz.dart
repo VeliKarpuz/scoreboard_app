@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:scoreboard_app/const.dart';
 import 'package:scoreboard_app/widgets/batak/uc_bes_sekiz/uc_bes_sekiz_oyun.dart';
-import 'package:scoreboard_app/widgets/my_card.dart';
-import 'package:scoreboard_app/widgets/my_text_form.dart';
+import 'package:scoreboard_app/widgets/common%20widgets/my_card_list.dart';
+import 'package:scoreboard_app/widgets/common%20widgets/my_text_form.dart';
 
 class UcBesSekiz extends StatelessWidget {
   TextEditingController oyuncu1 = TextEditingController(text: "Oyuncu 1");

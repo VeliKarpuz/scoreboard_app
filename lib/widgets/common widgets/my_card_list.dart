@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:scoreboard_app/widgets/batak/batak.dart';
+import 'package:scoreboard_app/widgets/deneme.dart';
 import 'package:scoreboard_app/widgets/okey/okey.dart';
 import 'package:scoreboard_app/widgets/satranc/satranc.dart';
-import '../widgets/king/king.dart';
+import '../king/king.dart';
 
 class MyCardList extends StatelessWidget {
   const MyCardList({super.key});

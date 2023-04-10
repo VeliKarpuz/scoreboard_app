@@ -26,8 +26,7 @@ class ScoreColumn extends StatelessWidget {
             const Divider(thickness: 2, color: Colors.black),
             Expanded(
               child: ListView.separated(
-                separatorBuilder: (context, index) => const Divider(
-                    thickness: 1, endIndent: 10, color: Colors.black),
+                separatorBuilder: (context, index) => myDivider(),
                 itemBuilder: (context, index) => Center(
                   child: SizedBox(
                       height: 20, child: Text(oyuncuPuan[index].toString())),
@@ -39,5 +38,10 @@ class ScoreColumn extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Divider myDivider() {
+    return const Divider(
+        thickness: 1, endIndent: 10, indent: 10, color: Colors.black);
   }
 }

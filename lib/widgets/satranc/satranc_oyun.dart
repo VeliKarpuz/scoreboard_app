@@ -21,33 +21,27 @@ class SatrancOyun extends StatefulWidget {
 
 class _SatrancOyunState extends State<SatrancOyun> {
   static final stopWatchTimer = StopWatchTimer(mode: StopWatchMode.countDown);
-  String displayTime = StopWatchTimer.getDisplayTime(
-    stopWatchTimer.rawTime.value,
-    hours: false,
-    minuteRightBreak: ".",
-  );
-  // stopRes() {
-  //   stopWatchTimer.onStopTimer();
-  //   stopWatchTimer.setPresetSecondTime(widget.second);
-  //   setState(() {});
-  // }
+  String displayTime = "";
+  presetTime() {
+    stopWatchTimer.setPresetMinuteTime(widget.minute);
+  }
 
   stopRes() {
     stopWatchTimer.onStopTimer();
-    stopWatchTimer.setPresetTime(mSec: 10000);
+    stopWatchTimer.setPresetTime(mSec: widget.second * 1000);
     print(displayTime);
     setState(() {});
   }
 
   @override
   void initState() {
-    stopWatchTimer.setPresetMinuteTime(widget.minute);
+    presetTime();
   }
 
   @override
-  void dispose() async {
+  void dispose() {
     super.dispose();
-    await stopWatchTimer.dispose();
+    stopWatchTimer.dispose();
   }
 
   Widget build(BuildContext context) {

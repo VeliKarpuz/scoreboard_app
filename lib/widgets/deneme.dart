@@ -57,7 +57,11 @@ class _DenemeState extends State<Deneme> {
         child: Column(
           children: [
             buildTime(),
-            ElevatedButton(onPressed: startTimer, child: Text("başla"))
+            ElevatedButton(
+                onPressed: () {
+                  startTimer();
+                },
+                child: Text("başla"))
           ],
         ),
       ),
@@ -69,9 +73,11 @@ class _DenemeState extends State<Deneme> {
     final seconds = twoDigits(duration.inSeconds.remainder(60));
     final minutes = twoDigits(duration.inMinutes.remainder(60));
 
-    return Text(
-      "$minutes.$seconds",
-      style: const TextStyle(fontSize: 40),
+    return Center(
+      child: Text(
+        "$minutes.$seconds",
+        style: const TextStyle(fontSize: 40),
+      ),
     );
   }
 }

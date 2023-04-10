@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scoreboard_app/widgets/deneme.dart';
-import 'package:scoreboard_app/widgets/my_card.dart';
+import 'package:scoreboard_app/widgets/common%20widgets/my_card_list.dart';
 import 'package:scoreboard_app/const.dart';
 import 'package:scoreboard_app/widgets/satranc/satranc_oyun.dart';
 import './theme.dart';
@@ -14,20 +14,15 @@ class MyApp extends StatelessWidget with MyTheme {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: myTheme,
-      home: Deneme(moveSeconds: 3),
+      home: MyHomePage(),
       title: ConstNames.title,
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

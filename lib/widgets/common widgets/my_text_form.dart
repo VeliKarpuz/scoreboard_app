@@ -19,7 +19,7 @@ class MyTextFormField extends StatelessWidget {
         controller: editing,
         decoration: InputDecoration(
           labelText: playerName,
-          border: OutlineInputBorder(
+          border: const OutlineInputBorder(
             borderSide: BorderSide(width: 5),
             borderRadius: BorderRadius.all(
               Radius.circular(10),
