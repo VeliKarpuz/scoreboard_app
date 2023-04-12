@@ -5,7 +5,7 @@ import 'package:scoreboard_app/widgets/batak/uc_bes_sekiz/uc_bes_sekiz.dart';
 import '../../const.dart';
 
 class Batak extends StatelessWidget {
-  const Batak({super.key});
+  Batak({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class Batak extends StatelessWidget {
             itemBuilder: (context, index) => Card(
               child: ListTile(
                 leading: const Icon(Icons.gamepad_outlined),
-                title: Text(batakOyunlari[index].toString()),
+                title: Text(batakNames[index]),
                 onTap: () {
                   Navigator.push(
                       context,
@@ -36,10 +36,11 @@ class Batak extends StatelessWidget {
       ]),
     );
   }
-}
 
-List<Widget> batakOyunlari = [
-  TekliBatak(),
-  EsliBatak(),
-  UcBesSekiz(),
-];
+  List<Widget> batakOyunlari = [
+    const TekliBatak(),
+    EsliBatak(),
+    UcBesSekiz(),
+  ];
+  List<String> batakNames = ["Tekli Batak", "Eşli Batak", "Üç Beş Sekiz"];
+}

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class Puan extends StatefulWidget {
   int selectedScore = 0;
+
+  Puan({super.key});
   @override
   State<Puan> createState() => _PuanState();
 }

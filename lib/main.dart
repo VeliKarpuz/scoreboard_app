@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:scoreboard_app/widgets/chat_deneme.dart';
-import 'package:scoreboard_app/widgets/deneme.dart';
 import 'package:scoreboard_app/widgets/common_widgets/my_card_list.dart';
 import 'package:scoreboard_app/const.dart';
-import 'package:scoreboard_app/widgets/satranc/satranc_oyun.dart';
 import './theme.dart';
 
 void main() => runApp(MyApp());
@@ -31,7 +28,7 @@ class MyHomePage extends StatelessWidget {
         title: const Text(ConstNames.title),
       ),
       body: Column(
-        children: const [
+        children: [
           MyCardList(),
         ],
       ),

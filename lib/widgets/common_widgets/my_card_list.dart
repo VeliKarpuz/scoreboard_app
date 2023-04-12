@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:scoreboard_app/widgets/batak/batak.dart';
-import 'package:scoreboard_app/widgets/deneme.dart';
 import 'package:scoreboard_app/widgets/okey/okey.dart';
 import 'package:scoreboard_app/widgets/satranc/satranc.dart';
 import '../king/king.dart';
 
 class MyCardList extends StatelessWidget {
-  const MyCardList({super.key});
+  MyCardList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +15,7 @@ class MyCardList extends StatelessWidget {
           itemBuilder: (context, index) => Card(
             child: ListTile(
               leading: const Icon(Icons.games),
-              title: Text(routes[index].toString()),
+              title: Text(routeNames[index]),
               onTap: () {
                 navigatorPush(context, routes[index]);
               },
@@ -27,14 +26,22 @@ class MyCardList extends StatelessWidget {
       ),
     );
   }
+
+  List<String> routeNames = [
+    "Batak",
+    "King",
+    "Okey",
+    "Satranc",
+  ];
+
+  List<Widget> routes = [
+    Batak(),
+    const King(),
+    const Okey(),
+    Satranc(),
+  ];
 }
 
-List<Widget> routes = [
-  const Batak(),
-  const King(),
-  const Okey(),
-  Satranc(),
-];
 navigatorPush(context, Widget route) {
   Navigator.push(
     context,

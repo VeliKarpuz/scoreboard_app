@@ -3,6 +3,7 @@ import 'package:scoreboard_app/widgets/common_widgets/puan.dart';
 
 class ScoreEntryRow extends StatelessWidget {
   const ScoreEntryRow({
+    super.key,
     required this.puan,
     required this.oyuncu,
     required this.widget,

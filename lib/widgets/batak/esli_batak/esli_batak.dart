@@ -5,8 +5,8 @@ import 'package:scoreboard_app/widgets/common_widgets/my_card_list.dart';
 import 'package:scoreboard_app/widgets/common_widgets/my_text_form.dart';
 
 class EsliBatak extends StatelessWidget {
-  TextEditingController takim1 = TextEditingController(text: "Takım 1");
-  TextEditingController takim2 = TextEditingController(text: "Takım 2");
+  final TextEditingController takim1 = TextEditingController(text: "Takım 1");
+  final TextEditingController takim2 = TextEditingController(text: "Takım 2");
 
   EsliBatak({super.key});
 

@@ -8,7 +8,8 @@ import 'package:scoreboard_app/widgets/common_widgets/score_entry_row.dart';
 class EsliBatakOyun extends StatefulWidget {
   final String takim1;
   final String takim2;
-  EsliBatakOyun({
+  const EsliBatakOyun({
+    super.key,
     required this.takim1,
     required this.takim2,
   });

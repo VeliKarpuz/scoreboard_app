@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 mixin MyTheme {
-  ThemeData myTheme = ThemeData(
+  final ThemeData myTheme = ThemeData(
     appBarTheme: AppBarTheme(
       backgroundColor: Color.fromARGB(255, 85, 49, 167),
       elevation: 10,

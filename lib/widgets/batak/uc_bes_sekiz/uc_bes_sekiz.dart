@@ -5,9 +5,9 @@ import 'package:scoreboard_app/widgets/common_widgets/my_card_list.dart';
 import 'package:scoreboard_app/widgets/common_widgets/my_text_form.dart';
 
 class UcBesSekiz extends StatelessWidget {
-  TextEditingController oyuncu1 = TextEditingController(text: "Oyuncu 1");
-  TextEditingController oyuncu2 = TextEditingController(text: "Oyuncu 2");
-  TextEditingController oyuncu3 = TextEditingController(text: "Oyuncu 3");
+  final TextEditingController oyuncu1 = TextEditingController(text: "Oyuncu 1");
+  final TextEditingController oyuncu2 = TextEditingController(text: "Oyuncu 2");
+  final TextEditingController oyuncu3 = TextEditingController(text: "Oyuncu 3");
 
   UcBesSekiz({super.key});
 
