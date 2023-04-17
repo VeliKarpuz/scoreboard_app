@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scoreboard_app/widgets/batak/batak.dart';
 import 'package:scoreboard_app/widgets/okey/okey.dart';
 import 'package:scoreboard_app/widgets/satranc/satranc.dart';
+import '../../const.dart';
 import '../king/king.dart';
 
 class MyCardList extends StatelessWidget {
@@ -28,10 +29,10 @@ class MyCardList extends StatelessWidget {
   }
 
   List<String> routeNames = [
-    "Batak",
-    "King",
-    "Okey",
-    "Satranc",
+    ConstNames.batak,
+    ConstNames.king,
+    ConstNames.okey,
+    ConstNames.satranc,
   ];
 
   List<Widget> routes = [

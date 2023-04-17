@@ -10,6 +10,10 @@ class ConstNames {
   // ignore: constant_identifier_names
   static const String UcBesSekiz = "Üç Beş Sekiz";
   static const String kaydet = "Kaydet";
+  static const String oyuncu1 = "Oyuncu 1";
+  static const String oyuncu2 = "Oyuncu 2";
+  static const String oyuncu3 = "Oyuncu 3";
+  static const String oyuncu4 = "Oyuncu 4";
   static int topla(List<int> list) {
     int toplam = 0;
     for (int i = 0; i < list.length; i++) {

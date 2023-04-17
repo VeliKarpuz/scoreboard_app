@@ -42,5 +42,9 @@ class Batak extends StatelessWidget {
     EsliBatak(),
     UcBesSekiz(),
   ];
-  List<String> batakNames = ["Tekli Batak", "Eşli Batak", "Üç Beş Sekiz"];
+  List<String> batakNames = [
+    ConstNames.tekliBatak,
+    ConstNames.esliBatak,
+    ConstNames.UcBesSekiz,
+  ];
 }

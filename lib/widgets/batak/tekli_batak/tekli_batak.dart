@@ -12,10 +12,14 @@ class TekliBatak extends StatefulWidget {
 }
 
 class _TekliBatakState extends State<TekliBatak> {
-  final TextEditingController oyuncu1 = TextEditingController(text: "Oyuncu 1");
-  final TextEditingController oyuncu2 = TextEditingController(text: "Oyuncu 2");
-  final TextEditingController oyuncu3 = TextEditingController(text: "Oyuncu 3");
-  final TextEditingController oyuncu4 = TextEditingController(text: "Oyuncu 4");
+  final TextEditingController oyuncu1 =
+      TextEditingController(text: ConstNames.oyuncu1);
+  final TextEditingController oyuncu2 =
+      TextEditingController(text: ConstNames.oyuncu2);
+  final TextEditingController oyuncu3 =
+      TextEditingController(text: ConstNames.oyuncu3);
+  final TextEditingController oyuncu4 =
+      TextEditingController(text: ConstNames.oyuncu4);
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +35,14 @@ class _TekliBatakState extends State<TekliBatak> {
               Form(
                 child: Column(
                   children: [
-                    MyTextFormField(editing: oyuncu1, playerName: "Oyuncu 1"),
-                    MyTextFormField(editing: oyuncu2, playerName: "Oyuncu 2"),
-                    MyTextFormField(editing: oyuncu3, playerName: "Oyuncu 3"),
-                    MyTextFormField(editing: oyuncu4, playerName: "Oyuncu 4"),
+                    MyTextFormField(
+                        editing: oyuncu1, playerName: ConstNames.oyuncu1),
+                    MyTextFormField(
+                        editing: oyuncu2, playerName: ConstNames.oyuncu2),
+                    MyTextFormField(
+                        editing: oyuncu3, playerName: ConstNames.oyuncu3),
+                    MyTextFormField(
+                        editing: oyuncu4, playerName: ConstNames.oyuncu4),
                   ],
                 ),
               ),
