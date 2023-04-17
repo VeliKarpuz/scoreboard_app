@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:scoreboard_app/const_names.dart';
 
 class SatrancOyun extends StatefulWidget {
   final int moveSeconds;
@@ -17,7 +18,7 @@ class SatrancOyun extends StatefulWidget {
 }
 
 class _SatrancOyunState extends State<SatrancOyun> {
-  AssetsAudioPlayer player = AssetsAudioPlayer();
+  AssetsAudioPlayer audioPlayer = AssetsAudioPlayer();
   Duration duration1 = const Duration();
   Duration duration2 = const Duration();
   Timer? timer1;
@@ -25,14 +26,13 @@ class _SatrancOyunState extends State<SatrancOyun> {
   bool? isPlayer1Active;
   int moveCount = 0;
   bool isPauseActive = false;
+
   @override
   void initState() {
     super.initState();
     duration1 = Duration(minutes: widget.moveMinutes);
     duration2 = Duration(minutes: widget.moveMinutes);
   }
-
-  /// tık sesi
 
   startTimer1() {
     isPlayer1Active = true;
@@ -78,38 +78,14 @@ class _SatrancOyunState extends State<SatrancOyun> {
               flex: 5,
               child: InkWell(
                 onTap: () {
-                  isPauseActive == false
-                      ? isPlayer1Active == null
-                          ? {
-                              startTimer2(),
-                              moveCount++,
-                              player.open(
-                                Audio("assets/chess_sound.wav"),
-                              )
-                            }
-                          : isPlayer1Active == true
-                              ? {
-                                  startTimer2(),
-                                  timer1?.cancel(),
-                                  duration1 = duration1 +
-                                      Duration(seconds: widget.moveSeconds),
-                                  moveCount++,
-                                  player.open(
-                                    Audio("assets/chess_sound.wav"),
-                                  )
-                                }
-                              : null
-                      : null;
+                  playerOneTap();
                 },
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.vertical(
-                        bottom: Radius.circular(20)),
-                    color: isPlayer1Active == null
-                        ? const Color.fromARGB(255, 201, 186, 228)
-                        : isPlayer1Active == true
-                            ? const Color.fromARGB(255, 112, 77, 194)
-                            : const Color.fromARGB(255, 201, 186, 228),
+                      bottom: Radius.circular(20),
+                    ),
+                    color: colorChange(isPlayer1Active),
                   ),
                   child: Center(
                     child: RotatedBox(
@@ -122,136 +98,20 @@ class _SatrancOyunState extends State<SatrancOyun> {
             ),
             Expanded(
               flex: 1,
-              child: SizedBox(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(FontAwesomeIcons.arrowLeft),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            title: const Text('Yeni Oyun'),
-                            content: const Text(
-                                'Yeni oyuna başlamak istiyor musunuz?'),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text('Vazgeç'),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  timer1?.cancel();
-                                  timer2?.cancel();
-                                  setState(() {
-                                    duration1 =
-                                        Duration(minutes: widget.moveMinutes);
-                                    duration2 =
-                                        Duration(minutes: widget.moveMinutes);
-                                    isPlayer1Active = null;
-                                    isPauseActive = false;
-                                    moveCount = 0;
-                                  });
-                                  Navigator.pop(context);
-                                },
-                                child: const Text('Devam'),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                      icon: const Icon(FontAwesomeIcons.arrowsRotate),
-                    ),
-                    IconButton(
-                        onPressed: () {
-                          isPauseActive == false
-                              ? {
-                                  timer1?.cancel(),
-                                  timer2?.cancel(),
-                                }
-                              : isPlayer1Active == true
-                                  ? startTimer1()
-                                  : startTimer2();
-                          isPauseActive == true
-                              ? isPauseActive = false
-                              : isPauseActive = true;
-                          setState(() {});
-                        },
-                        icon: Icon(
-                          isPauseActive == false
-                              ? (FontAwesomeIcons.pause)
-                              : (FontAwesomeIcons.play),
-                        )),
-                    RotatedBox(
-                      quarterTurns: 1,
-                      child: SizedBox(
-                        child: Column(
-                          children: [
-                            Text(
-                              moveCount.toString(),
-                              style: const TextStyle(
-                                fontSize: 40,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              "Hamle",
-                              style: TextStyle(
-                                color: Colors.grey[600],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              child: middleMenu(context),
             ),
             Expanded(
               flex: 5,
               child: InkWell(
                 onTap: () {
-                  isPauseActive == false
-                      ? isPlayer1Active == null
-                          ? {
-                              startTimer1(),
-                              moveCount++,
-                              player.open(
-                                Audio("assets/chess_sound.wav"),
-                              )
-                            }
-                          : isPlayer1Active == false
-                              ? {
-                                  startTimer1(),
-                                  timer2?.cancel(),
-                                  duration2 = duration2 +
-                                      Duration(seconds: widget.moveSeconds),
-                                  moveCount++,
-                                  player.open(
-                                    Audio("assets/chess_sound.wav"),
-                                  )
-                                }
-                              : null
-                      : null;
+                  playerTwoTap();
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius:
-                        const BorderRadius.vertical(top: Radius.circular(20)),
-                    color: isPlayer1Active == null
-                        ? const Color.fromARGB(255, 201, 186, 228)
-                        : isPlayer1Active == false
-                            ? const Color.fromARGB(255, 112, 77, 194)
-                            : const Color.fromARGB(255, 201, 186, 228),
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(20),
+                    ),
+                    color: colorChange(isPlayer1Active),
                   ),
                   child: Center(
                     child: buildTime(duration2),
@@ -261,6 +121,157 @@ class _SatrancOyunState extends State<SatrancOyun> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  void playerTwoTap() {
+    isPauseActive == false
+        ? isPlayer1Active == null
+            ? {
+                startTimer1(),
+                moveCount++,
+                audioPlayer.open(
+                  Audio(ConstNames.clickSoundPath),
+                )
+              }
+            : isPlayer1Active == false
+                ? {
+                    startTimer1(),
+                    timer2?.cancel(),
+                    duration2 =
+                        duration2 + Duration(seconds: widget.moveSeconds),
+                    moveCount++,
+                    audioPlayer.open(
+                      Audio(ConstNames.clickSoundPath),
+                    )
+                  }
+                : null
+        : null;
+  }
+
+  void playerOneTap() {
+    isPauseActive == false
+        ? isPlayer1Active == null
+            ? {
+                startTimer2(),
+                moveCount++,
+                audioPlayer.open(
+                  Audio(ConstNames.clickSoundPath),
+                )
+              }
+            : isPlayer1Active == true
+                ? {
+                    startTimer2(),
+                    timer1?.cancel(),
+                    duration1 =
+                        duration1 + Duration(seconds: widget.moveSeconds),
+                    moveCount++,
+                    audioPlayer.open(
+                      Audio(ConstNames.clickSoundPath),
+                    )
+                  }
+                : null
+        : null;
+  }
+
+  Color colorChange(bool? player) {
+    return player == null
+        ? ConstNames.satrancPassiveColor
+        : player == true
+            ? ConstNames.satrancActiveColor
+            : ConstNames.satrancPassiveColor;
+  }
+
+  SizedBox middleMenu(BuildContext context) {
+    return SizedBox(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(FontAwesomeIcons.arrowLeft),
+          ),
+          IconButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text(ConstNames.yeniOyun),
+                  content: const Text(ConstNames.yeniOyunText),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text(ConstNames.vazgec),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        timer1?.cancel();
+                        timer2?.cancel();
+                        setState(() {
+                          duration1 = Duration(minutes: widget.moveMinutes);
+                          duration2 = Duration(minutes: widget.moveMinutes);
+                          isPlayer1Active = null;
+                          isPauseActive = false;
+                          moveCount = 0;
+                        });
+                        Navigator.pop(context);
+                      },
+                      child: const Text(ConstNames.devam),
+                    ),
+                  ],
+                ),
+              );
+            },
+            icon: const Icon(FontAwesomeIcons.arrowsRotate),
+          ),
+          IconButton(
+              onPressed: () {
+                isPauseActive == false
+                    ? {
+                        timer1?.cancel(),
+                        timer2?.cancel(),
+                      }
+                    : isPlayer1Active == true
+                        ? startTimer1()
+                        : startTimer2();
+                isPauseActive == true
+                    ? isPauseActive = false
+                    : isPauseActive = true;
+                setState(() {});
+              },
+              icon: Icon(
+                isPauseActive == false
+                    ? (FontAwesomeIcons.pause)
+                    : (FontAwesomeIcons.play),
+              )),
+          RotatedBox(
+            quarterTurns: 1,
+            child: SizedBox(
+              child: Column(
+                children: [
+                  Text(
+                    moveCount.toString(),
+                    style: const TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    ConstNames.hamle,
+                    style: TextStyle(
+                      color: Colors.grey[600],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -277,6 +288,4 @@ class _SatrancOyunState extends State<SatrancOyun> {
       ),
     );
   }
-
-  pauseIcon() {}
 }

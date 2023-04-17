@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scoreboard_app/const.dart';
+import 'package:scoreboard_app/const_names.dart';
 
 class Okey extends StatefulWidget {
   const Okey({super.key});

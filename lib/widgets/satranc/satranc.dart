@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scoreboard_app/const.dart';
+import 'package:scoreboard_app/const_names.dart';
 import 'package:scoreboard_app/widgets/common_widgets/my_card_list.dart';
 import '../satranc/satranc_oyun.dart';
 
@@ -19,7 +19,7 @@ class Satranc extends StatelessWidget {
         children: [
           const SizedBox(height: 10),
           const Text(
-            'Süre Ayarları',
+            ConstNames.sureAyarlari,
             style: TextStyle(
               fontSize: 32,
             ),
@@ -34,43 +34,22 @@ class Satranc extends StatelessWidget {
                     flex: 2,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        keyboardType: TextInputType.number,
-                        maxLength: 2,
-                        textInputAction: TextInputAction.next,
+                      child: satrancTextFormField(
                         controller: moveMinute,
-                        decoration: const InputDecoration(
-                          labelText: "Dakika",
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(width: 5),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                          ),
-                        ),
+                        label: ConstNames.dakika,
                       ),
                     )),
                 const Spacer(flex: 1),
                 Expanded(
-                    flex: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        keyboardType: TextInputType.number,
-                        maxLength: 2,
-                        textInputAction: TextInputAction.next,
-                        controller: moveSecond,
-                        decoration: const InputDecoration(
-                          labelText: " + Saniye",
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(width: 5),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                          ),
-                        ),
-                      ),
-                    )),
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: satrancTextFormField(
+                      label: ConstNames.saniye,
+                      controller: moveSecond,
+                    ),
+                  ),
+                ),
                 const Spacer(
                   flex: 1,
                 ),
@@ -92,6 +71,25 @@ class Satranc extends StatelessWidget {
             child: const Text(ConstNames.kaydet),
           )
         ],
+      ),
+    );
+  }
+
+  TextFormField satrancTextFormField(
+      {required String label, required TextEditingController controller}) {
+    return TextFormField(
+      keyboardType: TextInputType.number,
+      maxLength: 2,
+      textInputAction: TextInputAction.next,
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: label,
+        border: const OutlineInputBorder(
+          borderSide: BorderSide(width: 5),
+          borderRadius: BorderRadius.all(
+            Radius.circular(10),
+          ),
+        ),
       ),
     );
   }

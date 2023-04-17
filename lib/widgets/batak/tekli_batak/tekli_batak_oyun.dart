@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:scoreboard_app/const.dart';
+import 'package:scoreboard_app/const_names.dart';
 import 'package:scoreboard_app/widgets/common_widgets/puan.dart';
 import 'package:scoreboard_app/widgets/common_widgets/score_entry_row.dart';
 import '../../common_widgets/score_column.dart';
@@ -38,7 +38,7 @@ class _TekliBatakOyunState extends State<TekliBatakOyun> {
       floatingActionButton: FloatingActionButton(
           onPressed: () => floatingScoreEntry(context),
           child: const Icon(Icons.add)),
-      backgroundColor: const Color.fromARGB(248, 228, 187, 197),
+      backgroundColor: ConstNames.gameBackground,
       appBar: AppBar(
         actions: [
           IconButton(
@@ -82,13 +82,12 @@ class _TekliBatakOyunState extends State<TekliBatakOyun> {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: const Text('Yeni Oyun'),
-        content: const Text(
-            'Bu oyun silinecek ve yeni bir oyun başlatılacak. Devam etmek istiyor musunuz?'),
+        title: const Text(ConstNames.yeniOyun),
+        content: const Text(ConstNames.yeniOyunText),
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Vazgeç'),
+            child: const Text(ConstNames.vazgec),
           ),
           TextButton(
             onPressed: () {
@@ -99,7 +98,7 @@ class _TekliBatakOyunState extends State<TekliBatakOyun> {
               oyuncu4Puan.clear();
               setState(() {});
             },
-            child: const Text('Devam'),
+            child: const Text(ConstNames.devam),
           ),
         ],
       ),
@@ -110,7 +109,9 @@ class _TekliBatakOyunState extends State<TekliBatakOyun> {
     return showDialog<dynamic>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: const Center(child: Text("Puanlar")),
+        title: const Center(
+          child: Text(ConstNames.puanlar),
+        ),
         content: SizedBox(
           height: 300,
           child: Column(
@@ -143,13 +144,13 @@ class _TekliBatakOyunState extends State<TekliBatakOyun> {
             onPressed: () {
               cancelMethod(context);
             },
-            child: const Text('Vazgeç'),
+            child: const Text(ConstNames.vazgec),
           ),
           TextButton(
             onPressed: () {
               okMethod(context);
             },
-            child: const Text('Kaydet'),
+            child: const Text(ConstNames.kaydet),
           ),
         ],
       ),

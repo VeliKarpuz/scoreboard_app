@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scoreboard_app/widgets/common_widgets/my_card_list.dart';
-import 'package:scoreboard_app/const.dart';
+import 'package:scoreboard_app/const_names.dart';
 import './theme.dart';
 
 void main() => runApp(MyApp());

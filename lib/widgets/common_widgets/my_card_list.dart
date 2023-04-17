@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scoreboard_app/widgets/batak/batak.dart';
 import 'package:scoreboard_app/widgets/okey/okey.dart';
 import 'package:scoreboard_app/widgets/satranc/satranc.dart';
-import '../../const.dart';
+import '../../const_names.dart';
 import '../king/king.dart';
 
 class MyCardList extends StatelessWidget {
