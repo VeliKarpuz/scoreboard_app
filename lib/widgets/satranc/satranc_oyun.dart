@@ -46,6 +46,9 @@ class _SatrancOyunState extends State<SatrancOyun> {
           } else {
             duration1 = Duration(seconds: seconds);
           }
+          duration1.inSeconds <= 30
+              ? audioPlayer.open(Audio(ConstNames.clickSoundPath))
+              : null;
         },
       ),
     );
@@ -78,7 +81,9 @@ class _SatrancOyunState extends State<SatrancOyun> {
               flex: 5,
               child: InkWell(
                 onTap: () {
-                  playerOneTap();
+                  setState(() {
+                    playerOneTap();
+                  });
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -90,7 +95,13 @@ class _SatrancOyunState extends State<SatrancOyun> {
                   child: Center(
                     child: RotatedBox(
                       quarterTurns: 2,
-                      child: buildTime(duration1),
+                      child: buildTime(
+                          duration1,
+                          isPlayer1Active == null
+                              ? Colors.black
+                              : isPlayer1Active == true
+                                  ? Colors.white
+                                  : Colors.black),
                     ),
                   ),
                 ),
@@ -104,17 +115,29 @@ class _SatrancOyunState extends State<SatrancOyun> {
               flex: 5,
               child: InkWell(
                 onTap: () {
-                  playerTwoTap();
+                  setState(() {
+                    playerTwoTap();
+                  });
                 },
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.vertical(
                       top: Radius.circular(20),
                     ),
-                    color: colorChange(isPlayer1Active),
+                    color: isPlayer1Active == null
+                        ? ConstNames.satrancPassiveColor
+                        : isPlayer1Active == false
+                            ? ConstNames.satrancActiveColor
+                            : ConstNames.satrancPassiveColor,
                   ),
                   child: Center(
-                    child: buildTime(duration2),
+                    child: buildTime(
+                        duration2,
+                        isPlayer1Active == null
+                            ? Colors.black
+                            : isPlayer1Active == false
+                                ? Colors.white
+                                : Colors.black),
                   ),
                 ),
               ),
@@ -276,7 +299,7 @@ class _SatrancOyunState extends State<SatrancOyun> {
     );
   }
 
-  Widget buildTime(Duration duration) {
+  Widget buildTime(Duration duration, Color color) {
     String twoDigits(int n) => n.toString().padLeft(2, "0");
     final seconds = twoDigits(duration.inSeconds.remainder(60));
     final minutes = twoDigits(duration.inMinutes.remainder(60));
@@ -284,7 +307,7 @@ class _SatrancOyunState extends State<SatrancOyun> {
     return Center(
       child: Text(
         "$minutes.$seconds",
-        style: const TextStyle(fontSize: 40),
+        style: TextStyle(fontSize: 40, color: color),
       ),
     );
   }
