@@ -46,8 +46,11 @@ class _SatrancOyunState extends State<SatrancOyun> {
           } else {
             duration1 = Duration(seconds: seconds);
           }
-          duration1.inSeconds <= 30
-              ? audioPlayer.open(Audio(ConstNames.clickSoundPath))
+          duration1.inSeconds <= 30 && duration1.inSeconds > 0
+              ? audioPlayer.open(Audio(ConstNames.littleTimeSoundPath))
+              : null;
+          duration1.inSeconds == 0
+              ? audioPlayer.open(Audio(ConstNames.gameOverSoundPath))
               : null;
         },
       ),
@@ -66,6 +69,12 @@ class _SatrancOyunState extends State<SatrancOyun> {
           } else {
             duration2 = Duration(seconds: seconds);
           }
+          duration2.inSeconds <= 30 && duration2.inSeconds > 0
+              ? audioPlayer.open(Audio(ConstNames.littleTimeSoundPath))
+              : null;
+          duration2.inSeconds == 0
+              ? audioPlayer.open(Audio(ConstNames.gameOverSoundPath))
+              : null;
         },
       ),
     );
@@ -90,19 +99,29 @@ class _SatrancOyunState extends State<SatrancOyun> {
                     borderRadius: const BorderRadius.vertical(
                       bottom: Radius.circular(20),
                     ),
-                    color: colorChange(isPlayer1Active),
+                    color: isPlayer1Active == null
+                        ? ConstNames.satrancPassiveColor
+                        : isPlayer1Active == false
+                            ? ConstNames.satrancPassiveColor
+                            : duration1.inSeconds > 0
+                                ? ConstNames.satrancActiveColor
+                                : Colors.white,
                   ),
                   child: Center(
                     child: RotatedBox(
-                      quarterTurns: 2,
-                      child: buildTime(
-                          duration1,
-                          isPlayer1Active == null
-                              ? Colors.black
-                              : isPlayer1Active == true
-                                  ? Colors.white
-                                  : Colors.black),
-                    ),
+                        quarterTurns: 2,
+                        child: duration1.inSeconds > 0
+                            ? buildTime(
+                                duration1,
+                                isPlayer1Active == null
+                                    ? Colors.black
+                                    : isPlayer1Active == true
+                                        ? Colors.white
+                                        : Colors.black)
+                            : Image.asset(
+                                "assets/flag.avif",
+                                fit: BoxFit.fill,
+                              )),
                   ),
                 ),
               ),
@@ -126,18 +145,25 @@ class _SatrancOyunState extends State<SatrancOyun> {
                     ),
                     color: isPlayer1Active == null
                         ? ConstNames.satrancPassiveColor
-                        : isPlayer1Active == false
-                            ? ConstNames.satrancActiveColor
-                            : ConstNames.satrancPassiveColor,
+                        : isPlayer1Active == true
+                            ? ConstNames.satrancPassiveColor
+                            : duration2.inSeconds > 0
+                                ? ConstNames.satrancActiveColor
+                                : Colors.white,
                   ),
                   child: Center(
-                    child: buildTime(
-                        duration2,
-                        isPlayer1Active == null
-                            ? Colors.black
-                            : isPlayer1Active == false
-                                ? Colors.white
-                                : Colors.black),
+                    child: duration2.inSeconds > 0
+                        ? buildTime(
+                            duration2,
+                            isPlayer1Active == null
+                                ? Colors.black
+                                : isPlayer1Active == false
+                                    ? Colors.white
+                                    : Colors.black)
+                        : Image.asset(
+                            "assets/flag.avif",
+                            fit: BoxFit.fill,
+                          ),
                   ),
                 ),
               ),
@@ -148,62 +174,58 @@ class _SatrancOyunState extends State<SatrancOyun> {
     );
   }
 
-  void playerTwoTap() {
-    isPauseActive == false
-        ? isPlayer1Active == null
-            ? {
-                startTimer1(),
-                moveCount++,
-                audioPlayer.open(
-                  Audio(ConstNames.clickSoundPath),
-                )
-              }
-            : isPlayer1Active == false
-                ? {
-                    startTimer1(),
-                    timer2?.cancel(),
-                    duration2 =
-                        duration2 + Duration(seconds: widget.moveSeconds),
-                    moveCount++,
-                    audioPlayer.open(
-                      Audio(ConstNames.clickSoundPath),
-                    )
-                  }
-                : null
-        : null;
-  }
-
   void playerOneTap() {
-    isPauseActive == false
-        ? isPlayer1Active == null
-            ? {
-                startTimer2(),
-                moveCount++,
-                audioPlayer.open(
-                  Audio(ConstNames.clickSoundPath),
-                )
-              }
-            : isPlayer1Active == true
+    duration1.inSeconds > 0
+        ? isPauseActive == false
+            ? isPlayer1Active == null
                 ? {
                     startTimer2(),
-                    timer1?.cancel(),
-                    duration1 =
-                        duration1 + Duration(seconds: widget.moveSeconds),
                     moveCount++,
                     audioPlayer.open(
                       Audio(ConstNames.clickSoundPath),
                     )
                   }
-                : null
+                : isPlayer1Active == true
+                    ? {
+                        startTimer2(),
+                        timer1?.cancel(),
+                        duration1 =
+                            duration1 + Duration(seconds: widget.moveSeconds),
+                        moveCount++,
+                        audioPlayer.open(
+                          Audio(ConstNames.clickSoundPath),
+                        )
+                      }
+                    : null
+            : null
         : null;
   }
 
-  Color colorChange(bool? player) {
-    return player == null
-        ? ConstNames.satrancPassiveColor
-        : player == true
-            ? ConstNames.satrancActiveColor
-            : ConstNames.satrancPassiveColor;
+  void playerTwoTap() {
+    duration2.inSeconds > 0
+        ? isPauseActive == false
+            ? isPlayer1Active == null
+                ? {
+                    startTimer1(),
+                    moveCount++,
+                    audioPlayer.open(
+                      Audio(ConstNames.clickSoundPath),
+                    )
+                  }
+                : isPlayer1Active == false
+                    ? {
+                        startTimer1(),
+                        timer2?.cancel(),
+                        duration2 =
+                            duration2 + Duration(seconds: widget.moveSeconds),
+                        moveCount++,
+                        audioPlayer.open(
+                          Audio(ConstNames.clickSoundPath),
+                        )
+                      }
+                    : null
+            : null
+        : null;
   }
 
   SizedBox middleMenu(BuildContext context) {

@@ -28,6 +28,9 @@ class ConstNames {
   static const String saniye = "+ Saniye";
   static const String hamle = "Hamle";
   static const String clickSoundPath = "assets/chess_sound.wav";
+  static const String littleTimeSoundPath = "assets/little_time_sound.wav";
+  static const String gameOverSoundPath = "assets/game_over.mp3";
+  static const String flagImagePath = "assets/flag.jpeg";
   static int topla(List<int> list) {
     int toplam = 0;
     for (int i = 0; i < list.length; i++) {
