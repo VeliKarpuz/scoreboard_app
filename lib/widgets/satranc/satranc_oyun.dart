@@ -34,6 +34,101 @@ class _SatrancOyunState extends State<SatrancOyun> {
     duration2 = Duration(minutes: widget.moveMinutes);
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(
+          children: [
+            Expanded(
+              flex: 5,
+              child: InkWell(
+                onTap: () {
+                  setState(() {
+                    playerOneTap();
+                  });
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.vertical(
+                      bottom: Radius.circular(20),
+                    ),
+                    color: isPlayer1Active == null
+                        ? ConstNames.satrancPassiveColor
+                        : isPlayer1Active == false
+                            ? ConstNames.satrancPassiveColor
+                            : duration1.inSeconds > 0
+                                ? ConstNames.satrancActiveColor
+                                : Colors.white,
+                  ),
+                  child: Center(
+                    child: RotatedBox(
+                        quarterTurns: 2,
+                        child: duration1.inSeconds > 0
+                            ? buildTime(
+                                duration1,
+                                isPlayer1Active == null
+                                    ? Colors.black
+                                    : isPlayer1Active == true
+                                        ? Colors.white
+                                        : Colors.black)
+                            : Image.asset(
+                                ConstNames.flagImagePath,
+                                fit: BoxFit.fill,
+                              )),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: middleMenu(context),
+            ),
+            Expanded(
+              flex: 5,
+              child: InkWell(
+                onTap: () {
+                  setState(() {
+                    playerTwoTap();
+                  });
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(20),
+                    ),
+                    color: isPlayer1Active == null
+                        ? ConstNames.satrancPassiveColor
+                        : isPlayer1Active == true
+                            ? ConstNames.satrancPassiveColor
+                            : duration2.inSeconds > 0
+                                ? ConstNames.satrancActiveColor
+                                : Colors.white,
+                  ),
+                  child: Center(
+                    child: duration2.inSeconds > 0
+                        ? buildTime(
+                            duration2,
+                            isPlayer1Active == null
+                                ? Colors.black
+                                : isPlayer1Active == false
+                                    ? Colors.white
+                                    : Colors.black)
+                        : Image.asset(
+                            ConstNames.flagImagePath,
+                            fit: BoxFit.fill,
+                          ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   startTimer1() {
     isPlayer1Active = true;
     timer1 = Timer.periodic(
@@ -76,100 +171,6 @@ class _SatrancOyunState extends State<SatrancOyun> {
               ? audioPlayer.open(Audio(ConstNames.gameOverSoundPath))
               : null;
         },
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
-          children: [
-            Expanded(
-              flex: 5,
-              child: InkWell(
-                onTap: () {
-                  setState(() {
-                    playerOneTap();
-                  });
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.vertical(
-                      bottom: Radius.circular(20),
-                    ),
-                    color: isPlayer1Active == null
-                        ? ConstNames.satrancPassiveColor
-                        : isPlayer1Active == false
-                            ? ConstNames.satrancPassiveColor
-                            : duration1.inSeconds > 0
-                                ? ConstNames.satrancActiveColor
-                                : Colors.white,
-                  ),
-                  child: Center(
-                    child: RotatedBox(
-                        quarterTurns: 2,
-                        child: duration1.inSeconds > 0
-                            ? buildTime(
-                                duration1,
-                                isPlayer1Active == null
-                                    ? Colors.black
-                                    : isPlayer1Active == true
-                                        ? Colors.white
-                                        : Colors.black)
-                            : Image.asset(
-                                "assets/flag.avif",
-                                fit: BoxFit.fill,
-                              )),
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: middleMenu(context),
-            ),
-            Expanded(
-              flex: 5,
-              child: InkWell(
-                onTap: () {
-                  setState(() {
-                    playerTwoTap();
-                  });
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(20),
-                    ),
-                    color: isPlayer1Active == null
-                        ? ConstNames.satrancPassiveColor
-                        : isPlayer1Active == true
-                            ? ConstNames.satrancPassiveColor
-                            : duration2.inSeconds > 0
-                                ? ConstNames.satrancActiveColor
-                                : Colors.white,
-                  ),
-                  child: Center(
-                    child: duration2.inSeconds > 0
-                        ? buildTime(
-                            duration2,
-                            isPlayer1Active == null
-                                ? Colors.black
-                                : isPlayer1Active == false
-                                    ? Colors.white
-                                    : Colors.black)
-                        : Image.asset(
-                            "assets/flag.avif",
-                            fit: BoxFit.fill,
-                          ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
