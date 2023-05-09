@@ -46,4 +46,8 @@ class ConstNames {
   static const Color satrancPassiveColor = Color.fromARGB(255, 201, 186, 228);
   static const Color satrancActiveTextColor = Colors.white;
   static const Color satrancPassiveTextColor = Colors.black;
+  static const Color orange = Colors.orange;
+  static const Color green = Colors.green;
+  static const Color red = Colors.red;
+  static const Color red2 = Color.fromARGB(255, 59, 22, 22);
 }

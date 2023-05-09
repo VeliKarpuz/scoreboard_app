@@ -1,23 +1,17 @@
 import 'package:flutter/material.dart';
 
-import '../../../../const_names.dart';
-import '../tekli_king_oyun.dart';
-
 class TabloIsimHucresi extends StatefulWidget {
   TabloIsimHucresi({
-    super.key,
-    required this.widget,
-    required this.textColor,
-    required this.oyuncu,
-    required this.onTap,
-    required this.isPlayerActive,
+    this.backgroundColor,
+    this.oyuncu,
+    this.onTap,
+    this.isPlayerActive,
   });
 
-  final TekliKingOyun widget;
-  final String oyuncu;
-  final Color textColor;
-  final VoidCallback onTap;
-  final bool isPlayerActive;
+  final String? oyuncu;
+  final Color? backgroundColor;
+  final VoidCallback? onTap;
+  bool? isPlayerActive;
 
   @override
   State<TabloIsimHucresi> createState() => _TabloIsimHucresiState();
@@ -34,12 +28,12 @@ class _TabloIsimHucresiState extends State<TabloIsimHucresi> {
           padding: EdgeInsets.all(5),
           decoration: BoxDecoration(
               borderRadius: BorderRadiusDirectional.circular(10),
-              color: ConstNames.satrancActiveColor),
+              color: widget.backgroundColor),
           child: Center(
             child: Text(
-              widget.oyuncu,
+              widget.oyuncu ?? "",
               style: TextStyle(
-                color: widget.textColor,
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),

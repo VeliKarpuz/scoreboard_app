@@ -23,6 +23,41 @@ class TekliKingOyun extends StatefulWidget {
 class _TekliKingOyunState extends State<TekliKingOyun> {
   bool isGameStart = false;
   bool isPlayerChosingActive = false;
+  var oyuncu1 = TabloIsimHucresi(
+    backgroundColor: Colors.white,
+    isPlayerActive: false,
+    oyuncu: "",
+    onTap: () {},
+  );
+  var oyuncu2 = TabloIsimHucresi(
+    backgroundColor: Colors.white,
+    isPlayerActive: false,
+    oyuncu: "",
+    onTap: () {},
+  );
+  var oyuncu3 = TabloIsimHucresi(
+    backgroundColor: Colors.white,
+    isPlayerActive: false,
+    oyuncu: "",
+    onTap: () {},
+  );
+  var oyuncu4 = TabloIsimHucresi(
+    backgroundColor: Colors.white,
+    isPlayerActive: false,
+    oyuncu: "",
+    onTap: () {},
+  );
+
+  kimbasliyor(TabloIsimHucresi widget) {
+    if (isPlayerChosingActive) {
+      setState(() {
+        widget.isPlayerActive = true;
+        isPlayerChosingActive = false;
+      });
+    } else {
+      return;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,34 +69,56 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
         children: [
           Row(
             children: [
-              Expanded(child: SizedBox()),
-              TabloIsimHucresi(
-                onTap: () {},
-                widget: widget,
-                textColor: Colors.white,
+              const Expanded(
+                child: SizedBox(),
+              ),
+              oyuncu1 = TabloIsimHucresi(
+                isPlayerActive: false,
                 oyuncu: widget.oyuncu1,
-                isPlayerActive: false,
+                backgroundColor: (isPlayerChosingActive == true
+                    ? ConstNames.green
+                    : oyuncu1.isPlayerActive == true
+                        ? ConstNames.green
+                        : ConstNames.satrancActiveColor),
+                onTap: () {
+                  kimbasliyor(oyuncu1);
+                },
               ),
-              TabloIsimHucresi(
-                onTap: () {},
-                widget: widget,
-                textColor: Colors.white,
+              oyuncu2 = TabloIsimHucresi(
+                isPlayerActive: false,
                 oyuncu: widget.oyuncu2,
-                isPlayerActive: false,
+                backgroundColor: (isPlayerChosingActive == true
+                    ? ConstNames.green
+                    : oyuncu2.isPlayerActive == true
+                        ? ConstNames.green
+                        : ConstNames.satrancActiveColor),
+                onTap: () {
+                  kimbasliyor(oyuncu2);
+                },
               ),
-              TabloIsimHucresi(
-                onTap: () {},
-                widget: widget,
-                textColor: Colors.white,
+              oyuncu3 = TabloIsimHucresi(
+                isPlayerActive: false,
                 oyuncu: widget.oyuncu3,
-                isPlayerActive: false,
+                backgroundColor: (isPlayerChosingActive == true
+                    ? ConstNames.green
+                    : oyuncu3.isPlayerActive == true
+                        ? ConstNames.green
+                        : ConstNames.satrancActiveColor),
+                onTap: () {
+                  kimbasliyor(oyuncu3);
+                },
               ),
-              TabloIsimHucresi(
-                onTap: () {},
-                widget: widget,
-                textColor: Colors.white,
-                oyuncu: widget.oyuncu4,
+              oyuncu4 = TabloIsimHucresi(
                 isPlayerActive: false,
+                oyuncu: widget.oyuncu4,
+                backgroundColor: (isPlayerChosingActive == true
+                    ? ConstNames.green
+                    : oyuncu4.isPlayerActive == true
+                        ? ConstNames.green
+                        : ConstNames.satrancActiveColor),
+                onTap: () {
+                  kimbasliyor(oyuncu4);
+                },
               ),
             ],
           ),
@@ -325,10 +382,14 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
           ),
           ElevatedButton(
             onPressed: () {
-              setState(() {
-                isGameStart == false ? isPlayerChosingActive = true : false;
-                isGameStart = true;
-              });
+              if (!isGameStart) {
+                setState(() {
+                  isPlayerChosingActive = true;
+                  isGameStart = true;
+                });
+              } else {
+                return;
+              }
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.green,
