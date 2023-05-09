@@ -21,6 +21,8 @@ class ConstNames {
   static const String vazgec = "Vazgeç";
   static const String devam = "Devam";
   static const String puanlar = "Puanlar";
+  static const String tekliKing = "Tekli King";
+  static const String esliKing = "Eşli King";
   static const String takim1 = "Takım 1";
   static const String takim2 = "Takım 2";
   static const String sureAyarlari = "Süre Ayarları";
