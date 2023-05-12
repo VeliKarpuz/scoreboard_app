@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scoreboard_app/const_names.dart';
+import 'package:scoreboard_app/widgets/king/tekli_king/tablo_hucre_widgets/sabit_oyun_adi.dart';
 import 'package:scoreboard_app/widgets/king/tekli_king/tablo_hucre_widgets/tablo_toplam_skor_hucresi.dart';
 import 'tablo_hucre_widgets/tablo_ceza_puan_hucresi.dart';
 import 'tablo_hucre_widgets/tablo_isim_hucresi.dart';
@@ -23,6 +24,7 @@ class TekliKingOyun extends StatefulWidget {
 class _TekliKingOyunState extends State<TekliKingOyun> {
   bool isGameStart = false;
   bool isPlayerChosingActive = false;
+  bool isGameChoosingActive = false;
   var oyuncu1 = TabloIsimHucresi(
     backgroundColor: Colors.white,
     isPlayerActive: false,
@@ -46,6 +48,48 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
     isPlayerActive: false,
     oyuncu: "",
     onTap: () {},
+  );
+  var soniki = TabloOyunHucresi(
+    isim: "SON İKİ",
+    backgroundColor: Colors.white,
+    onTap: () {},
+    isGameActive: false,
+  );
+  var kiz = TabloOyunHucresi(
+    isim: "SON İKİ",
+    backgroundColor: Colors.white,
+    onTap: () {},
+    isGameActive: false,
+  );
+  var erkek = TabloOyunHucresi(
+    isim: "SON İKİ",
+    backgroundColor: Colors.white,
+    onTap: () {},
+    isGameActive: false,
+  );
+  var kupa = TabloOyunHucresi(
+    isim: "SON İKİ",
+    backgroundColor: Colors.white,
+    onTap: () {},
+    isGameActive: false,
+  );
+  var rifki = TabloOyunHucresi(
+    isim: "SON İKİ",
+    backgroundColor: Colors.white,
+    onTap: () {},
+    isGameActive: false,
+  );
+  var el = TabloOyunHucresi(
+    isim: "SON İKİ",
+    backgroundColor: Colors.white,
+    onTap: () {},
+    isGameActive: false,
+  );
+  var kozlar = TabloOyunHucresi(
+    isim: "SON İKİ",
+    backgroundColor: Colors.white,
+    onTap: () {},
+    isGameActive: false,
   );
 
   kimbasliyor(TabloIsimHucresi widget) {
@@ -124,8 +168,18 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
           ),
           Row(
             children: [
-              TabloOyunHucresi(
+              soniki = TabloOyunHucresi(
                 isim: "SON İKİ",
+                backgroundColor: isGameChoosingActive == true
+                    ? ConstNames.green
+                    : soniki.isGameActive == true
+                        ? ConstNames.green
+                        : ConstNames.satrancActiveColor,
+                isGameActive: false,
+                onTap: () {
+                  soniki.isGameActive = true;
+                  isGameChoosingActive = false;
+                },
               ),
               TabloCezaPuanHucresi(
                 backgroundColor: Colors.orange,
@@ -156,6 +210,16 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
           Row(
             children: [
               TabloOyunHucresi(
+                backgroundColor: isGameChoosingActive == true
+                    ? ConstNames.green
+                    : soniki.isGameActive == true
+                        ? ConstNames.green
+                        : ConstNames.satrancActiveColor,
+                isGameActive: false,
+                onTap: () {
+                  soniki.isGameActive = true;
+                  isGameChoosingActive = false;
+                },
                 isim: "KIZ",
               ),
               TabloCezaPuanHucresi(
@@ -188,6 +252,16 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
             children: [
               TabloOyunHucresi(
                 isim: "ERKEK",
+                backgroundColor: isGameChoosingActive == true
+                    ? ConstNames.green
+                    : soniki.isGameActive == true
+                        ? ConstNames.green
+                        : ConstNames.satrancActiveColor,
+                isGameActive: false,
+                onTap: () {
+                  soniki.isGameActive = true;
+                  isGameChoosingActive = false;
+                },
               ),
               TabloCezaPuanHucresi(
                 backgroundColor: Colors.orange,
@@ -218,6 +292,16 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
           Row(
             children: [
               TabloOyunHucresi(
+                backgroundColor: isGameChoosingActive == true
+                    ? ConstNames.green
+                    : soniki.isGameActive == true
+                        ? ConstNames.green
+                        : ConstNames.satrancActiveColor,
+                isGameActive: false,
+                onTap: () {
+                  soniki.isGameActive = true;
+                  isGameChoosingActive = false;
+                },
                 isim: "KUPA",
               ),
               TabloCezaPuanHucresi(
@@ -250,6 +334,16 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
             children: [
               TabloOyunHucresi(
                 isim: "RIFKI",
+                backgroundColor: isGameChoosingActive == true
+                    ? ConstNames.green
+                    : soniki.isGameActive == true
+                        ? ConstNames.green
+                        : ConstNames.satrancActiveColor,
+                isGameActive: false,
+                onTap: () {
+                  soniki.isGameActive = true;
+                  isGameChoosingActive = false;
+                },
               ),
               TabloCezaPuanHucresi(
                 backgroundColor: Colors.orange,
@@ -281,6 +375,16 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
             children: [
               TabloOyunHucresi(
                 isim: "EL",
+                backgroundColor: isGameChoosingActive == true
+                    ? ConstNames.green
+                    : soniki.isGameActive == true
+                        ? ConstNames.green
+                        : ConstNames.satrancActiveColor,
+                isGameActive: false,
+                onTap: () {
+                  soniki.isGameActive = true;
+                  isGameChoosingActive = false;
+                },
               ),
               TabloCezaPuanHucresi(
                 backgroundColor: Colors.orange,
@@ -310,7 +414,19 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
           ),
           Row(
             children: [
-              TabloOyunHucresi(isim: "Kozlar"),
+              TabloOyunHucresi(
+                isim: "Kozlar",
+                backgroundColor: isGameChoosingActive == true
+                    ? ConstNames.green
+                    : soniki.isGameActive == true
+                        ? ConstNames.green
+                        : ConstNames.satrancActiveColor,
+                isGameActive: false,
+                onTap: () {
+                  soniki.isGameActive = true;
+                  isGameChoosingActive = false;
+                },
+              ),
               TabloKozPuanHucresi(
                 puan1: 0,
                 puan2: 0,
@@ -355,17 +471,8 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
           ),
           Row(
             children: [
-              TabloOyunHucresi(isim: "TOPLAM CEZA"),
-              TabloToplamSkorHucresi(skor: -4000),
+              SabitOyunAdi(isim: "TOPLAM CEZA"),
               TabloToplamSkorHucresi(skor: 0),
-              TabloToplamSkorHucresi(skor: 0),
-              TabloToplamSkorHucresi(skor: 0),
-            ],
-          ),
-          Row(
-            children: [
-              TabloOyunHucresi(isim: "TOPLAM KOZ"),
-              TabloToplamSkorHucresi(skor: -4000),
               TabloToplamSkorHucresi(skor: 0),
               TabloToplamSkorHucresi(skor: 0),
               TabloToplamSkorHucresi(skor: 0),
@@ -373,8 +480,17 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
           ),
           Row(
             children: [
-              TabloOyunHucresi(isim: "TOPLAM SKOR"),
-              TabloToplamSkorHucresi(skor: -4000),
+              SabitOyunAdi(isim: "TOPLAM KOZ"),
+              TabloToplamSkorHucresi(skor: 0),
+              TabloToplamSkorHucresi(skor: 0),
+              TabloToplamSkorHucresi(skor: 0),
+              TabloToplamSkorHucresi(skor: 0),
+            ],
+          ),
+          Row(
+            children: [
+              SabitOyunAdi(isim: "TOPLAM SKOR"),
+              TabloToplamSkorHucresi(skor: 0),
               TabloToplamSkorHucresi(skor: 0),
               TabloToplamSkorHucresi(skor: 0),
               TabloToplamSkorHucresi(skor: 0),
@@ -388,7 +504,9 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
                   isGameStart = true;
                 });
               } else {
-                return;
+                setState(() {
+                  isGameChoosingActive == true;
+                });
               }
             },
             style: ElevatedButton.styleFrom(
