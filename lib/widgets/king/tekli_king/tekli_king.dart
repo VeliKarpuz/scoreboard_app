@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:scoreboard_app/const_names.dart';
 import 'package:scoreboard_app/widgets/common_widgets/my_card_list.dart';
 import 'package:scoreboard_app/widgets/common_widgets/my_text_form.dart';
-import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_oyun.dart';
 
 class TekliKing extends StatelessWidget {
   TekliKing({super.key});
@@ -38,17 +37,7 @@ class TekliKing extends StatelessWidget {
 
   ElevatedButton kaydetButton(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
-        navigatorPush(
-          context,
-          TekliKingOyun(
-            oyuncu1: oyuncu1.text,
-            oyuncu2: oyuncu2.text,
-            oyuncu3: oyuncu3.text,
-            oyuncu4: oyuncu4.text,
-          ),
-        );
-      },
+      onPressed: () {},
       style: ElevatedButton.styleFrom(
         backgroundColor: Color.fromARGB(255, 123, 107, 160),
       ),
