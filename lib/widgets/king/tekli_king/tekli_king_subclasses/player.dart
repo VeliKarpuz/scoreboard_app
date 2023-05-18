@@ -18,19 +18,25 @@ class Player extends StatelessWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: playerState.whichPlayerIsActive,
-      builder: (context, value, child) => Expanded(
+      builder: (context, value, child) => SizedBox(
+        height: MediaQuery.of(context).size.height * 0.077,
+        width: MediaQuery.of(context).size.width * 0.2,
         child: AnimatedContainer(
-          padding: EdgeInsets.all(3),
-          margin: EdgeInsets.only(top: 6, bottom: 3, left: 3, right: 3),
+          padding: ConstNames.kingOrtaObje,
+          margin: ConstNames.kingUstObje,
           height: MediaQuery.of(context).size.height * 0.06,
-          duration: const Duration(milliseconds: 750),
+          duration: ConstNames.kingDuration,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: value == queue ? Colors.red : Colors.blue,
+            color: value == queue
+                ? ConstNames.green
+                : ConstNames.satrancActiveColor,
           ),
           child: Center(
-            child:
-                Text(playerName, style: Theme.of(context).textTheme.bodyLarge),
+            child: Text(
+              playerName,
+              style: const TextStyle(color: ConstNames.white),
+            ),
           ),
         ),
       ),

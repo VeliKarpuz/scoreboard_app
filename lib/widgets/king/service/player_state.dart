@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PlayerState {
-  ValueNotifier<int> whichPlayerIsActive = ValueNotifier<int>(0);
+  ValueNotifier<int> whichPlayerIsActive = ValueNotifier<int>(2);
 
   void nextPlayer() {
     whichPlayerIsActive.value < 4

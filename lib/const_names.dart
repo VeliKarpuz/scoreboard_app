@@ -46,8 +46,13 @@ class ConstNames {
   static const Color satrancPassiveColor = Color.fromARGB(255, 201, 186, 228);
   static const Color satrancActiveTextColor = Colors.white;
   static const Color satrancPassiveTextColor = Colors.black;
+  static const Color white = Colors.white;
   static const Color orange = Colors.orange;
   static const Color green = Colors.green;
   static const Color red = Colors.red;
   static const Color red2 = Color.fromARGB(255, 59, 22, 22);
+  static const EdgeInsets kingOrtaObje = EdgeInsets.all(3);
+  static const EdgeInsets kingUstObje =
+      EdgeInsets.only(top: 6, bottom: 3, left: 3, right: 3);
+  static const kingDuration = Duration(milliseconds: 750);
 }
