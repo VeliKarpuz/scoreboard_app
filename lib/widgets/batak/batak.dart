@@ -1,3 +1,4 @@
+// ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:scoreboard_app/widgets/batak/esli_batak/esli_batak.dart';
 import 'package:scoreboard_app/widgets/batak/tekli_batak/tekli_batak.dart';

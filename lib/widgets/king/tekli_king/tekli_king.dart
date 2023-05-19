@@ -49,7 +49,7 @@ class TekliKing extends StatelessWidget {
             ));
       },
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color.fromARGB(255, 123, 107, 160),
+        backgroundColor: const Color.fromARGB(255, 123, 107, 160),
       ),
       child: const Text(ConstNames.kaydet),
     );

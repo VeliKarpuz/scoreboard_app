@@ -1,3 +1,4 @@
+// ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/game_type.dart';
 import '../../../../const_names.dart';

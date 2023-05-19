@@ -1,6 +1,7 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/ceza.dart';
-import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/koz_ceza.dart';
+import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/koz_puan.dart';
 import '../game_type.dart';
 
 class EighthRow extends StatelessWidget {

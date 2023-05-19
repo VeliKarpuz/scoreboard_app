@@ -46,7 +46,7 @@ class _KingState extends State<King> {
 
 List<Widget> kingOyunlari = [
   TekliKing(),
-  EsliKing(),
+  const EsliKing(),
 ];
 
 List<String> kingOyunlariAd = ["Tekli King", "Eşli King"];

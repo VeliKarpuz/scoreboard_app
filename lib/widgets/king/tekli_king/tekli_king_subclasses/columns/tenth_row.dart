@@ -8,7 +8,7 @@ class TenthRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       children: [
         ScoreTitle(gameName: "TOPLAM KOZ"),
         ToplamPuan(puan: "0"),

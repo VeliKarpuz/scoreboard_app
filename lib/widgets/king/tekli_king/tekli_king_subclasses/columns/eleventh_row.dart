@@ -8,7 +8,7 @@ class EleventhRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       children: [
         ScoreTitle(gameName: "TOPLAM SKOR"),
         ToplamPuan(puan: "0"),

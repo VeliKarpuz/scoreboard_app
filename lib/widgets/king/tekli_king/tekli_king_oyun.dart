@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scoreboard_app/const_names.dart';
 import 'package:scoreboard_app/widgets/king/service/player_state.dart';
 import 'package:scoreboard_app/widgets/king/service/service_locator.dart';
 import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/columns/eighth_row.dart';
@@ -14,7 +15,7 @@ import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/col
 import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/columns/third_row.dart';
 
 class TekliKingOyun extends StatefulWidget {
-  TekliKingOyun(
+  const TekliKingOyun(
       {super.key,
       required this.player1,
       required this.player2,
@@ -32,7 +33,9 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(ConstNames.king),
+      ),
       body: Column(
         children: [
           FirstRow(
@@ -49,9 +52,9 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
           SixthRow(),
           SeventhRow(),
           EighthRow(),
-          NinthRow(),
-          TenthRow(),
-          EleventhRow(),
+          const NinthRow(),
+          const TenthRow(),
+          const EleventhRow(),
         ],
       ),
     );

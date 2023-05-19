@@ -1,6 +1,6 @@
+// ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/ceza.dart';
-import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/player.dart';
 
 import '../game_type.dart';
 
@@ -9,7 +9,7 @@ class ThirdRow extends StatelessWidget {
     super.key,
   });
 
-  GameType kiz = GameType(gameName: "KIZ", queue: 2);
+  final GameType kiz = GameType(gameName: "KIZ", queue: 2);
 
   @override
   Widget build(BuildContext context) {

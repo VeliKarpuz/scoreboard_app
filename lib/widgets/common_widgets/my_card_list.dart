@@ -28,14 +28,14 @@ class MyCardList extends StatelessWidget {
     );
   }
 
-  List<String> routeNames = [
+  final List<String> routeNames = const [
     ConstNames.batak,
     ConstNames.king,
     ConstNames.okey,
     ConstNames.satranc,
   ];
 
-  List<Widget> routes = [
+  final List<Widget> routes = [
     Batak(),
     const King(),
     const Okey(),
