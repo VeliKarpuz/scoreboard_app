@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/ceza.dart';
-import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/player.dart';
-
 import '../game_type.dart';
 
 class FourthRow extends StatelessWidget {

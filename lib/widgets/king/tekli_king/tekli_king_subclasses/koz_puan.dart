@@ -5,8 +5,8 @@ import '../../service/game_type_state.dart';
 import '../../service/player_state.dart';
 import '../../service/service_locator.dart';
 
-class KozCeza extends StatelessWidget {
-  KozCeza({
+class KozPuan extends StatelessWidget {
+  KozPuan({
     super.key,
     required this.playerCoordinate,
     required this.gameCoordinate,

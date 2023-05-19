@@ -15,7 +15,7 @@ class EighthRow extends StatelessWidget {
     return Row(
       children: [
         kozlar,
-        KozCeza(
+        KozPuan(
           playerCoordinate: 1,
           gameCoordinate: 7,
           puan1: 0,
@@ -28,7 +28,7 @@ class EighthRow extends StatelessWidget {
           puan8: 0,
           widget: kozlar,
         ),
-        KozCeza(
+        KozPuan(
           playerCoordinate: 2,
           gameCoordinate: 7,
           puan1: 0,
@@ -41,7 +41,7 @@ class EighthRow extends StatelessWidget {
           puan8: 0,
           widget: kozlar,
         ),
-        KozCeza(
+        KozPuan(
           playerCoordinate: 3,
           gameCoordinate: 7,
           puan1: 0,
@@ -54,7 +54,7 @@ class EighthRow extends StatelessWidget {
           puan8: 0,
           widget: kozlar,
         ),
-        KozCeza(
+        KozPuan(
           playerCoordinate: 4,
           gameCoordinate: 7,
           puan1: 0,
