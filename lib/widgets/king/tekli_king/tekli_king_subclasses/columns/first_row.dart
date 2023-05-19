@@ -14,9 +14,11 @@ class FirstRow extends StatelessWidget {
       required this.name2,
       required this.name3,
       required this.name4,
-      required this.widget});
+      required this.widget,
+      required this.onTap});
   final String name1, name2, name3, name4;
   final Widget widget;
+  final VoidCallback onTap;
 
   Player player1 = Player(queue: 1, playerName: "playerName");
   Player player2 = Player(queue: 1, playerName: "playerName");
@@ -50,11 +52,7 @@ class FirstRow extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.077,
                 width: MediaQuery.of(context).size.width * 0.2,
                 child: InkWell(
-                  onTap: () {
-                    whichPlayerIsActive > 0 && whichGameIsActive > 0
-                        ? gameTypeState.DuringGame()
-                        : null;
-                  },
+                  onTap: onTap,
                   splashColor: Colors.grey,
                   child: Container(
                     margin: ConstNames.kingUstObje,

@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 
 class Puan extends StatefulWidget {
+  Puan({super.key, required this.minScore});
   int selectedScore = 0;
-
-  Puan({super.key});
+  final int minScore;
   @override
   State<Puan> createState() => _PuanState();
 }
@@ -12,7 +12,7 @@ class Puan extends StatefulWidget {
 class _PuanState extends State<Puan> {
   scoreChange(bool plus) {
     plus == true && widget.selectedScore <= 12 ? widget.selectedScore++ : null;
-    plus == false && widget.selectedScore >= -12
+    plus == false && widget.selectedScore >= widget.minScore
         ? widget.selectedScore--
         : null;
   }

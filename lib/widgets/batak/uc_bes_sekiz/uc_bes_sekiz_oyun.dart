@@ -24,9 +24,9 @@ class _UcBesSekizOyunState extends State<UcBesSekizOyun> {
   List<int> oyuncu1Puan = [];
   List<int> oyuncu2Puan = [];
   List<int> oyuncu3Puan = [];
-  Puan puan1 = Puan();
-  Puan puan2 = Puan();
-  Puan puan3 = Puan();
+  Puan puan1 = Puan(minScore: -12);
+  Puan puan2 = Puan(minScore: -12);
+  Puan puan3 = Puan(minScore: -12);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

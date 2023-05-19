@@ -43,7 +43,6 @@ class GameType extends StatelessWidget {
                 if (activatedCounter < 5) {
                   gameTypeState.gameSelector(queue);
                   activatedCounter++;
-                  gameTypeState.gameChoosingTrue();
                 }
               }
             },

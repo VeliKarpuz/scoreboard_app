@@ -27,10 +27,10 @@ class _TekliBatakOyunState extends State<TekliBatakOyun> {
   List<int> oyuncu3Puan = [];
   List<int> oyuncu4Puan = [];
 
-  Puan puan1 = Puan();
-  Puan puan2 = Puan();
-  Puan puan3 = Puan();
-  Puan puan4 = Puan();
+  Puan puan1 = Puan(minScore: -12);
+  Puan puan2 = Puan(minScore: -12);
+  Puan puan3 = Puan(minScore: -12);
+  Puan puan4 = Puan(minScore: -12);
 
   @override
   Widget build(BuildContext context) {

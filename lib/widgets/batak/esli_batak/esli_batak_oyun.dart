@@ -21,8 +21,12 @@ class EsliBatakOyun extends StatefulWidget {
 class _EsliBatakOyunState extends State<EsliBatakOyun> {
   List<int> takim1Puan = [];
   List<int> takim2Puan = [];
-  Puan puan1 = Puan();
-  Puan puan2 = Puan();
+  Puan puan1 = Puan(
+    minScore: -12,
+  );
+  Puan puan2 = Puan(
+    minScore: -12,
+  );
 
   @override
   Widget build(BuildContext context) {
