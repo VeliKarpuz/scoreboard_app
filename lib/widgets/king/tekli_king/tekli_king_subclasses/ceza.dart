@@ -42,7 +42,7 @@ class Ceza extends StatelessWidget {
                 duration: ConstNames.kingDuration,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: widget.activatedCounter < 3
+                  color: widget.activatedCounter < 2
                       ? playerCoordinate == whichPlayer &&
                               gameCoordinate == whichGame
                           ? ConstNames.green

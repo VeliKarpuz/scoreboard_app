@@ -3,17 +3,24 @@ import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/sco
 import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/toplam_puan.dart';
 
 class NinthRow extends StatelessWidget {
-  const NinthRow({super.key});
+  const NinthRow(
+      {super.key,
+      required this.oyuncu1ceza,
+      required this.oyuncu2ceza,
+      required this.oyuncu3ceza,
+      required this.oyuncu4ceza});
+
+  final int oyuncu1ceza, oyuncu2ceza, oyuncu3ceza, oyuncu4ceza;
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       children: [
-        ScoreTitle(gameName: "TOPLAM CEZA"),
-        ToplamPuan(puan: "0"),
-        ToplamPuan(puan: "0"),
-        ToplamPuan(puan: "0"),
-        ToplamPuan(puan: "0"),
+        const ScoreTitle(gameName: "TOPLAM CEZA"),
+        ToplamPuan(puan: oyuncu1ceza.toString()),
+        ToplamPuan(puan: oyuncu2ceza.toString()),
+        ToplamPuan(puan: oyuncu3ceza.toString()),
+        ToplamPuan(puan: oyuncu4ceza.toString()),
       ],
     );
   }

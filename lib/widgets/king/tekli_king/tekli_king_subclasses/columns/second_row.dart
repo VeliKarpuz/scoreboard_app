@@ -15,6 +15,7 @@ class SecondRow extends StatelessWidget {
     required this.oyuncu4Puan2,
     super.key,
     required this.onTap,
+    required this.activatedCounter,
   });
   int oyuncu1Puan1,
       oyuncu2Puan1,
@@ -29,15 +30,23 @@ class SecondRow extends StatelessWidget {
     gameName: "SON İKİ",
     queue: 1,
     onTap: () {},
+    activatedCounter: 0,
+    turnRed: 2,
   );
 
   final VoidCallback onTap;
+  final int activatedCounter;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        soniki = GameType(gameName: "SON İKİ", queue: 1, onTap: onTap),
+        soniki = GameType(
+            gameName: "SON İKİ",
+            queue: 1,
+            onTap: onTap,
+            activatedCounter: activatedCounter,
+            turnRed: 2),
         Ceza(
           widget: soniki,
           playerCoordinate: 1,

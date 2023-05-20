@@ -28,4 +28,10 @@ class PuanState {
     oyuncu4PuanListesi.value.insert(row, oyuncu4);
     oyuncu4PuanListesi.value = List<int>.from(oyuncu4PuanListesi.value);
   }
+
+  int cezaHesapla(List<int> list) {
+    for (var i = 0; i < 12; i++) {
+      0 + list[i];
+    }
+  }
 }

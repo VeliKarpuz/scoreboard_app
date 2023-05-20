@@ -12,11 +12,14 @@ class GameType extends StatelessWidget {
     required this.gameName,
     required this.queue,
     required this.onTap,
+    required this.activatedCounter,
+    required this.turnRed,
   });
   final String gameName;
   final int queue;
-  int activatedCounter = 0;
+  final int activatedCounter;
   final VoidCallback onTap;
+  final int turnRed;
 
   final gameTypeState = getIt.get<GameTypeState>();
 
@@ -47,7 +50,7 @@ class GameType extends StatelessWidget {
               duration: ConstNames.kingDuration,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: activatedCounter < 3
+                color: activatedCounter < turnRed
                     ? whichGameIsActive < 1
                         ? ConstNames.green
                         : whichGameIsActive == queue
