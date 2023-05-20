@@ -11,10 +11,12 @@ class GameType extends StatelessWidget {
     super.key,
     required this.gameName,
     required this.queue,
+    required this.onTap,
   });
   final String gameName;
   final int queue;
   int activatedCounter = 0;
+  final VoidCallback onTap;
 
   final gameTypeState = getIt.get<GameTypeState>();
 
@@ -25,7 +27,7 @@ class GameType extends StatelessWidget {
       builder: (
         context,
         gameChoosing,
-        child,
+        _,
       ) =>
           ValueListenableBuilder(
         valueListenable: gameTypeState.whichGameIsActive,
@@ -38,21 +40,14 @@ class GameType extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.077,
           width: MediaQuery.of(context).size.width * 0.2,
           child: InkWell(
-            onTap: () {
-              if (gameChoosing) {
-                if (activatedCounter < 5) {
-                  gameTypeState.gameSelector(queue);
-                  activatedCounter++;
-                }
-              }
-            },
+            onTap: onTap,
             child: AnimatedContainer(
               padding: const EdgeInsets.all(3),
               margin: const EdgeInsets.all(3),
               duration: ConstNames.kingDuration,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: activatedCounter < 5
+                color: activatedCounter < 3
                     ? whichGameIsActive < 1
                         ? ConstNames.green
                         : whichGameIsActive == queue

@@ -55,7 +55,7 @@ class KozPuan extends StatelessWidget {
                 duration: ConstNames.kingDuration,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: widget.activatedCounter < 5
+                  color: widget.activatedCounter < 8
                       ? playerCoordinate == whichPlayer &&
                               gameCoordinate == whichGame
                           ? ConstNames.green

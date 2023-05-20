@@ -6,15 +6,21 @@ import '../game_type.dart';
 class SixthRow extends StatelessWidget {
   SixthRow({
     super.key,
+    required this.onTap,
   });
 
-  GameType rifki = GameType(gameName: "RIFKI", queue: 5);
+  GameType rifki = GameType(
+    gameName: "RIFKI",
+    queue: 5,
+    onTap: () {},
+  );
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        rifki,
+        rifki = GameType(gameName: "RIFKI", queue: 5, onTap: onTap),
         Ceza(
           playerCoordinate: 1,
           gameCoordinate: 5,

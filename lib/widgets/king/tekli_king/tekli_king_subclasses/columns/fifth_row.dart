@@ -6,15 +6,21 @@ import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/gam
 class FifthRow extends StatelessWidget {
   FifthRow({
     super.key,
+    required this.onTap,
   });
 
-  GameType kupa = GameType(gameName: "KUPA", queue: 4);
+  GameType kupa = GameType(
+    gameName: "KUPA",
+    queue: 4,
+    onTap: () {},
+  );
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        kupa,
+        kupa = GameType(gameName: "KUPA", queue: 4, onTap: onTap),
         Ceza(
           playerCoordinate: 1,
           gameCoordinate: 4,

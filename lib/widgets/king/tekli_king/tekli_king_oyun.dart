@@ -3,6 +3,7 @@ import 'package:scoreboard_app/const_names.dart';
 import 'package:scoreboard_app/widgets/common_widgets/puan.dart';
 import 'package:scoreboard_app/widgets/common_widgets/score_entry_row.dart';
 import 'package:scoreboard_app/widgets/king/service/player_state.dart';
+import 'package:scoreboard_app/widgets/king/service/puan_state.dart';
 import 'package:scoreboard_app/widgets/king/service/service_locator.dart';
 import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/columns/eighth_row.dart';
 import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/columns/eleventh_row.dart';
@@ -18,7 +19,7 @@ import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/col
 import '../service/game_type_state.dart';
 
 class TekliKingOyun extends StatefulWidget {
-  const TekliKingOyun(
+  TekliKingOyun(
       {super.key,
       required this.player1,
       required this.player2,
@@ -33,6 +34,7 @@ class TekliKingOyun extends StatefulWidget {
 class _TekliKingOyunState extends State<TekliKingOyun> {
   final gameTypeState = getIt.get<GameTypeState>();
   final playerState = getIt.get<PlayerState>();
+  final puanState = getIt.get<PuanState>();
   final Puan puan1 = Puan(minScore: 1);
   final Puan puan2 = Puan(minScore: 1);
   final Puan puan3 = Puan(minScore: 1);
@@ -54,7 +56,7 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             "OYUN TÜRÜ: ${bottomSheetTitle()}",
-                            style: TextStyle(fontSize: 20),
+                            style: const TextStyle(fontSize: 20),
                           ),
                         ),
                         ScoreEntryRow(
@@ -79,7 +81,10 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            setState(() {});
+                            puanlama();
+                            Navigator.pop(context);
+                            gameTypeState.isGameChoosing();
+                            playerState.nextPlayer();
                           },
                           child: const Text(ConstNames.kaydet),
                         )
@@ -91,6 +96,36 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
             },
           )
         : null;
+  }
+
+  int rowSelector() {
+    switch (gameTypeState.whichGameIsActive.value) {
+      case 1:
+        return gameTypeState.soniki.value;
+      case 2:
+        return gameTypeState.kiz.value;
+      case 3:
+        return gameTypeState.erkek.value;
+      case 4:
+        return gameTypeState.kupa.value;
+      case 5:
+        return gameTypeState.rifki.value;
+      case 6:
+        return gameTypeState.el.value;
+      case 7:
+        return gameTypeState.kozlar.value;
+    }
+    throw 0;
+  }
+
+  void puanlama() {
+    puanState.puanGir(
+      puan1.selectedScore,
+      puan2.selectedScore,
+      puan3.selectedScore,
+      puan4.selectedScore,
+      rowSelector(),
+    );
   }
 
   String bottomSheetTitle() {
@@ -116,8 +151,26 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
       default:
         "OYUN SEÇİNİZ";
     }
-    throw {"null"};
+    throw {"OYUN SEÇİNİZ"};
   }
+
+  SecondRow sonikiSatir = SecondRow(
+    onTap: () {},
+    oyuncu1Puan1: 0,
+    oyuncu1Puan2: 0,
+    oyuncu2Puan1: 0,
+    oyuncu2Puan2: 0,
+    oyuncu3Puan1: 0,
+    oyuncu3Puan2: 0,
+    oyuncu4Puan1: 0,
+    oyuncu4Puan2: 0,
+  );
+  ThirdRow kizSatir = ThirdRow(onTap: () {});
+  FourthRow erkekSatir = FourthRow(onTap: () {});
+  FifthRow kupaSatir = FifthRow(onTap: () {});
+  SixthRow rifkiSatir = SixthRow(onTap: () {});
+  SeventhRow elSatir = SeventhRow(onTap: () {});
+  EighthRow kozlarSatir = EighthRow(onTap: () {});
 
   @override
   Widget build(BuildContext context) {
@@ -125,36 +178,51 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
       appBar: AppBar(
         title: Text(ConstNames.king),
       ),
-      body: Column(
-        children: [
-          FirstRow(
-            onTap: devamFunction,
-            name1: widget.player1,
-            name2: widget.player2,
-            name3: widget.player3,
-            name4: widget.player4,
-            widget: widget,
-          ),
-          SecondRow(
-            oyuncu1Puan1: 0,
-            oyuncu1Puan2: 5,
-            oyuncu2Puan1: 0,
-            oyuncu2Puan2: 0,
-            oyuncu3Puan1: 0,
-            oyuncu3Puan2: 0,
-            oyuncu4Puan1: 0,
-            oyuncu4Puan2: 0,
-          ),
-          ThirdRow(),
-          FourthRow(),
-          FifthRow(),
-          SixthRow(),
-          SeventhRow(),
-          EighthRow(),
-          const NinthRow(),
-          const TenthRow(),
-          const EleventhRow(),
-        ],
+      body: ValueListenableBuilder<List<int>>(
+        valueListenable: puanState.oyuncu1PuanListesi,
+        builder: (BuildContext context, List<int> liste1, Widget? child) {
+          return Column(
+            children: [
+              FirstRow(
+                onTap: devamFunction,
+                name1: widget.player1,
+                name2: widget.player2,
+                name3: widget.player3,
+                name4: widget.player4,
+                widget: widget,
+              ),
+              sonikiSatir = SecondRow(
+                onTap: () {
+                  if (gameTypeState.gameChoosing.value) {
+                    if (sonikiSatir.soniki.activatedCounter < 3) {
+                      gameTypeState.isGameChoosing();
+                      gameTypeState.gameSelector(1);
+                      sonikiSatir.soniki.activatedCounter++;
+                      print(sonikiSatir.soniki.activatedCounter);
+                    }
+                  }
+                },
+                oyuncu1Puan1: liste1[0],
+                oyuncu2Puan1: 0,
+                oyuncu3Puan1: 0,
+                oyuncu4Puan1: 0,
+                oyuncu1Puan2: liste1[1],
+                oyuncu2Puan2: 0,
+                oyuncu3Puan2: 0,
+                oyuncu4Puan2: 0,
+              ),
+              kizSatir,
+              erkekSatir,
+              kupaSatir,
+              rifkiSatir,
+              elSatir,
+              kozlarSatir,
+              const NinthRow(),
+              const TenthRow(),
+              const EleventhRow(),
+            ],
+          );
+        },
       ),
     );
   }

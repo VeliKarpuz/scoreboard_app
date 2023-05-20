@@ -39,7 +39,7 @@ class FirstRow extends StatelessWidget {
             builder: (
               context,
               whichGameIsActive,
-              child,
+              childd,
             ) =>
                 ValueListenableBuilder(
               valueListenable: playerState.whichPlayerIsActive,
