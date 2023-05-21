@@ -29,9 +29,56 @@ class PuanState {
     oyuncu4PuanListesi.value = List<int>.from(oyuncu4PuanListesi.value);
   }
 
-  int cezaHesapla(List<int> list) {
-    for (var i = 0; i < 12; i++) {
-      0 + list[i];
-    }
+  int cezaToplam(List list) {
+    int toplamCeza = list[0] * 180 +
+        list[1] * 180 +
+        list[2] * 100 +
+        list[3] * 100 +
+        list[4] * 120 +
+        list[5] * 120 +
+        list[6] * 30 +
+        list[7] * 30 +
+        list[8] * 320 +
+        list[9] * 320 +
+        list[10] * 50 +
+        list[11] * 50;
+    return toplamCeza;
+  }
+
+  int kozToplam(List list) {
+    int toplamKoz = list[12] * 50 +
+        list[13] * 50 +
+        list[14] * 50 +
+        list[15] * 50 +
+        list[16] * 50 +
+        list[17] * 50 +
+        list[18] * 50 +
+        list[19] * 50;
+    return toplamKoz;
+  }
+
+  num puanToplam(List list) {
+    num toplamPuan = -1 *
+            (list[0] * 180 +
+                list[1] * 180 +
+                list[2] * 100 +
+                list[3] * 100 +
+                list[4] * 120 +
+                list[5] * 120 +
+                list[6] * 30 +
+                list[7] * 30 +
+                list[8] * 320 +
+                list[9] * 320 +
+                list[10] * 50 +
+                list[11] * 50) +
+        (list[12] * 50 +
+            list[13] * 50 +
+            list[14] * 50 +
+            list[15] * 50 +
+            list[16] * 50 +
+            list[17] * 50 +
+            list[18] * 50 +
+            list[19] * 50);
+    return toplamPuan;
   }
 }
