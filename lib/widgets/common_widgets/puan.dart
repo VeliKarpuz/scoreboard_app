@@ -29,10 +29,10 @@ class _PuanState extends State<Puan> {
             ),
             onPressed: () {
               setState(() {
-                scoreChange(true);
+                scoreChange(false);
               });
             },
-            child: const Icon(Icons.add),
+            child: const Icon(Icons.remove),
           ),
           SizedBox(
             width: 40,
@@ -47,10 +47,10 @@ class _PuanState extends State<Puan> {
             ),
             onPressed: () {
               setState(() {
-                scoreChange(false);
+                scoreChange(true);
               });
             },
-            child: const Icon(Icons.remove),
+            child: const Icon(Icons.add),
           ),
         ],
       ),

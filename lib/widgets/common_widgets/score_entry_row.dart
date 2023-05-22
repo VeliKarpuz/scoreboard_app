@@ -17,11 +17,20 @@ class ScoreEntryRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text(oyuncu),
-          SizedBox(
-            child: puan,
+          Padding(
+            padding: const EdgeInsets.only(left: 30),
+            child: SizedBox(
+              width: 100,
+              child: Text(oyuncu),
+            ),
+          ),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(right: 30),
+            child: SizedBox(
+              child: puan,
+            ),
           ),
         ],
       ),

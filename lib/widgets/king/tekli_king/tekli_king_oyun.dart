@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:scoreboard_app/const_names.dart';
 import 'package:scoreboard_app/widgets/common_widgets/puan.dart';
 import 'package:scoreboard_app/widgets/common_widgets/score_entry_row.dart';
@@ -218,11 +219,40 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
   int elCounter = 0;
   int kozlarCounter = 0;
 
+  void refreshButton() {
+    setState(() {
+      playerState.whichPlayerIsActive.value = 0;
+      playerState.isPlayerSelected.value = false;
+      gameTypeState.whichGameIsActive.value = 0;
+      gameTypeState.gameChoosing.value = true;
+      gameTypeState.isDuringGame.value = false;
+      gameTypeState.soniki.value = -1;
+      gameTypeState.kiz.value = 1;
+      gameTypeState.erkek.value = 3;
+      gameTypeState.kupa.value = 5;
+      gameTypeState.rifki.value = 7;
+      gameTypeState.el.value = 9;
+      gameTypeState.kozlar.value = 11;
+      puanState.oyuncu1PuanListesi.value = List.generate(20, (index) => 0);
+      puanState.oyuncu2PuanListesi.value = List.generate(20, (index) => 0);
+      puanState.oyuncu3PuanListesi.value = List.generate(20, (index) => 0);
+      puanState.oyuncu4PuanListesi.value = List.generate(20, (index) => 0);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(ConstNames.king),
+        title: const Text(ConstNames.king),
+        automaticallyImplyLeading: false,
+        actions: [
+          refresh(context),
+          const SizedBox(
+            width: 10,
+          )
+        ],
+        leading: arrowBack(context),
       ),
       body: ValueListenableBuilder<List<int>>(
         valueListenable: puanState.oyuncu1PuanListesi,
@@ -292,14 +322,14 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
                               },
                               activatedCounter: kizCounter),
                           erkekSatir = FourthRow(
-                              oyuncu1puan5: liste1[4] * 120,
-                              oyuncu2puan5: liste2[4] * 120,
-                              oyuncu3puan5: liste3[4] * 120,
-                              oyuncu4puan5: liste4[4] * 120,
-                              oyuncu1puan6: liste1[5] * 120,
-                              oyuncu2puan6: liste2[5] * 120,
-                              oyuncu3puan6: liste3[5] * 120,
-                              oyuncu4puan6: liste4[5] * 120,
+                              oyuncu1puan5: liste1[4] * 60,
+                              oyuncu2puan5: liste2[4] * 60,
+                              oyuncu3puan5: liste3[4] * 60,
+                              oyuncu4puan5: liste4[4] * 60,
+                              oyuncu1puan6: liste1[5] * 60,
+                              oyuncu2puan6: liste2[5] * 60,
+                              oyuncu3puan6: liste3[5] * 60,
+                              oyuncu4puan6: liste4[5] * 60,
                               onTap: () {
                                 if (gameTypeState.gameChoosing.value) {
                                   if (erkekSatir.erkek.activatedCounter < 2) {
@@ -376,38 +406,38 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
                               },
                               activatedCounter: elCounter),
                           kozlarSatir = EighthRow(
-                              oyuncu1puan13: liste1[12] * 50,
-                              oyuncu2puan13: liste2[12] * 50,
-                              oyuncu3puan13: liste3[12] * 50,
-                              oyuncu4puan13: liste4[12] * 50,
-                              oyuncu1puan14: liste1[13] * 50,
-                              oyuncu2puan14: liste2[13] * 50,
-                              oyuncu3puan14: liste3[13] * 50,
-                              oyuncu4puan14: liste4[13] * 50,
-                              oyuncu1puan15: liste1[14] * 50,
-                              oyuncu2puan15: liste2[14] * 50,
-                              oyuncu3puan15: liste3[14] * 50,
-                              oyuncu4puan15: liste4[14] * 50,
-                              oyuncu1puan16: liste1[15] * 50,
-                              oyuncu2puan16: liste2[15] * 50,
-                              oyuncu3puan16: liste3[15] * 50,
-                              oyuncu4puan16: liste4[15] * 50,
-                              oyuncu1puan17: liste1[16] * 50,
-                              oyuncu2puan17: liste2[16] * 50,
-                              oyuncu3puan17: liste3[16] * 50,
-                              oyuncu4puan17: liste4[16] * 50,
-                              oyuncu1puan18: liste1[17] * 50,
-                              oyuncu2puan18: liste2[17] * 50,
-                              oyuncu3puan18: liste3[17] * 50,
-                              oyuncu4puan18: liste4[17] * 50,
-                              oyuncu1puan19: liste1[18] * 50,
-                              oyuncu2puan19: liste2[18] * 50,
-                              oyuncu3puan19: liste3[18] * 50,
-                              oyuncu4puan19: liste4[18] * 50,
-                              oyuncu1puan20: liste1[19] * 50,
-                              oyuncu2puan20: liste2[19] * 50,
-                              oyuncu3puan20: liste3[19] * 50,
-                              oyuncu4puan20: liste4[19] * 50,
+                              oyuncu1puan13: liste1[12],
+                              oyuncu2puan13: liste2[12],
+                              oyuncu3puan13: liste3[12],
+                              oyuncu4puan13: liste4[12],
+                              oyuncu1puan14: liste1[13],
+                              oyuncu2puan14: liste2[13],
+                              oyuncu3puan14: liste3[13],
+                              oyuncu4puan14: liste4[13],
+                              oyuncu1puan15: liste1[14],
+                              oyuncu2puan15: liste2[14],
+                              oyuncu3puan15: liste3[14],
+                              oyuncu4puan15: liste4[14],
+                              oyuncu1puan16: liste1[15],
+                              oyuncu2puan16: liste2[15],
+                              oyuncu3puan16: liste3[15],
+                              oyuncu4puan16: liste4[15],
+                              oyuncu1puan17: liste1[16],
+                              oyuncu2puan17: liste2[16],
+                              oyuncu3puan17: liste3[16],
+                              oyuncu4puan17: liste4[16],
+                              oyuncu1puan18: liste1[17],
+                              oyuncu2puan18: liste2[17],
+                              oyuncu3puan18: liste3[17],
+                              oyuncu4puan18: liste4[17],
+                              oyuncu1puan19: liste1[18],
+                              oyuncu2puan19: liste2[18],
+                              oyuncu3puan19: liste3[18],
+                              oyuncu4puan19: liste4[18],
+                              oyuncu1puan20: liste1[19],
+                              oyuncu2puan20: liste2[19],
+                              oyuncu3puan20: liste3[19],
+                              oyuncu4puan20: liste4[19],
                               onTap: () {
                                 if (gameTypeState.gameChoosing.value) {
                                   if (kozlarSatir.kozlar.activatedCounter < 8) {
@@ -452,6 +482,66 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
           );
         },
       ),
+    );
+  }
+
+  IconButton refresh(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            title: const Text(ConstNames.yeniOyun),
+            content: const Text(ConstNames.yeniOyunText),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text(ConstNames.vazgec),
+              ),
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    refreshButton();
+                  });
+                  Navigator.pop(context);
+                },
+                child: const Text(ConstNames.devam),
+              ),
+            ],
+          ),
+        );
+      },
+      icon: const Icon(FontAwesomeIcons.arrowsRotate),
+    );
+  }
+
+  IconButton arrowBack(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.arrow_back),
+      onPressed: () {
+        showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            title: const Text('Dikkat'),
+            content: const Text(
+                'Oyunu terkederseniz kayıtlı puanlar silinecek. Devam etmek istiyor musunuz?'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text(ConstNames.vazgec),
+              ),
+              TextButton(
+                onPressed: () {
+                  refreshButton();
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                },
+                child: const Text(ConstNames.devam),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 
