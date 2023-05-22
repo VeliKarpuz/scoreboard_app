@@ -17,6 +17,10 @@ class ThirdRow extends StatelessWidget {
     required this.oyuncu4puan4,
     required this.onTap,
     required this.activatedCounter,
+    required this.player1counter,
+    required this.player2counter,
+    required this.player3counter,
+    required this.player4counter,
   });
 
   int oyuncu1puan3,
@@ -29,20 +33,35 @@ class ThirdRow extends StatelessWidget {
       oyuncu4puan4;
 
   GameType kiz = GameType(
-      gameName: "KIZ", queue: 2, onTap: () {}, activatedCounter: 0, turnRed: 2);
+    gameName: "KIZ",
+    queue: 2,
+    onTap: () {},
+    activatedCounter: 0,
+    turnRed: 2,
+    player1counter: 0,
+    player2counter: 0,
+    player3counter: 0,
+    player4counter: 0,
+  );
   final VoidCallback onTap;
   final int activatedCounter;
+  final int player1counter, player2counter, player3counter, player4counter;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         kiz = GameType(
-            gameName: "KIZ",
-            queue: 2,
-            onTap: onTap,
-            activatedCounter: activatedCounter,
-            turnRed: 2),
+          gameName: "KIZ",
+          queue: 2,
+          onTap: onTap,
+          activatedCounter: activatedCounter,
+          turnRed: 2,
+          player1counter: player1counter,
+          player2counter: player2counter,
+          player3counter: player3counter,
+          player4counter: player4counter,
+        ),
         Ceza(
           playerCoordinate: 1,
           gameCoordinate: 2,

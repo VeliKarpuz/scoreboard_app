@@ -16,6 +16,10 @@ class SixthRow extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.activatedCounter,
+    required this.player1counter,
+    required this.player2counter,
+    required this.player3counter,
+    required this.player4counter,
   });
 
   int oyuncu1puan9,
@@ -28,24 +32,35 @@ class SixthRow extends StatelessWidget {
       oyuncu4puan10;
 
   GameType rifki = GameType(
-      gameName: "RIFKI",
-      queue: 5,
-      onTap: () {},
-      activatedCounter: 0,
-      turnRed: 2);
+    gameName: "RIFKI",
+    queue: 5,
+    onTap: () {},
+    activatedCounter: 0,
+    turnRed: 2,
+    player1counter: 0,
+    player2counter: 0,
+    player3counter: 0,
+    player4counter: 0,
+  );
   final int activatedCounter;
   final VoidCallback onTap;
+  final int player1counter, player2counter, player3counter, player4counter;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         rifki = GameType(
-            gameName: "RIFKI",
-            queue: 5,
-            onTap: onTap,
-            activatedCounter: activatedCounter,
-            turnRed: 2),
+          gameName: "RIFKI",
+          queue: 5,
+          onTap: onTap,
+          activatedCounter: activatedCounter,
+          turnRed: 2,
+          player1counter: player1counter,
+          player2counter: player2counter,
+          player3counter: player3counter,
+          player4counter: player4counter,
+        ),
         Ceza(
           playerCoordinate: 1,
           gameCoordinate: 5,

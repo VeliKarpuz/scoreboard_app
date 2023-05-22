@@ -17,6 +17,7 @@ import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/col
 import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/columns/sixth_row.dart';
 import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/columns/tenth_row.dart';
 import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/columns/third_row.dart';
+// import 'package:scoreboard_app/widgets/king/tekli_king/tekli_king_subclasses/game_type.dart';
 import '../service/game_type_state.dart';
 
 class TekliKingOyun extends StatefulWidget {
@@ -102,142 +103,77 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
         : null;
   }
 
-  SecondRow sonikiSatir = SecondRow(
-    onTap: () {},
-    oyuncu1Puan1: 0,
-    oyuncu1Puan2: 0,
-    oyuncu2Puan1: 0,
-    oyuncu2Puan2: 0,
-    oyuncu3Puan1: 0,
-    oyuncu3Puan2: 0,
-    oyuncu4Puan1: 0,
-    oyuncu4Puan2: 0,
-    activatedCounter: 0,
-  );
-  ThirdRow kizSatir = ThirdRow(
-    onTap: () {},
-    activatedCounter: 0,
-    oyuncu1puan3: 0,
-    oyuncu1puan4: 0,
-    oyuncu2puan3: 0,
-    oyuncu2puan4: 0,
-    oyuncu3puan3: 0,
-    oyuncu3puan4: 0,
-    oyuncu4puan3: 0,
-    oyuncu4puan4: 0,
-  );
-  FourthRow erkekSatir = FourthRow(
-    onTap: () {},
-    activatedCounter: 0,
-    oyuncu1puan5: 0,
-    oyuncu1puan6: 0,
-    oyuncu2puan5: 0,
-    oyuncu2puan6: 0,
-    oyuncu3puan5: 0,
-    oyuncu3puan6: 0,
-    oyuncu4puan5: 0,
-    oyuncu4puan6: 0,
-  );
-  FifthRow kupaSatir = FifthRow(
-    onTap: () {},
-    activatedCounter: 0,
-    oyuncu1puan7: 0,
-    oyuncu1puan8: 0,
-    oyuncu2puan7: 0,
-    oyuncu2puan8: 0,
-    oyuncu3puan7: 0,
-    oyuncu3puan8: 0,
-    oyuncu4puan7: 0,
-    oyuncu4puan8: 0,
-  );
-  SixthRow rifkiSatir = SixthRow(
-    onTap: () {},
-    activatedCounter: 0,
-    oyuncu1puan10: 0,
-    oyuncu1puan9: 0,
-    oyuncu2puan10: 0,
-    oyuncu2puan9: 0,
-    oyuncu3puan10: 0,
-    oyuncu3puan9: 0,
-    oyuncu4puan10: 0,
-    oyuncu4puan9: 0,
-  );
-  SeventhRow elSatir = SeventhRow(
-    onTap: () {},
-    activatedCounter: 0,
-    oyuncu1puan11: 0,
-    oyuncu1puan12: 0,
-    oyuncu2puan11: 0,
-    oyuncu2puan12: 0,
-    oyuncu3puan11: 0,
-    oyuncu3puan12: 0,
-    oyuncu4puan11: 0,
-    oyuncu4puan12: 0,
-  );
-  EighthRow kozlarSatir = EighthRow(
-    onTap: () {},
-    activatedCounter: 0,
-    oyuncu1puan13: 0,
-    oyuncu1puan14: 0,
-    oyuncu1puan15: 0,
-    oyuncu1puan16: 0,
-    oyuncu1puan17: 0,
-    oyuncu1puan18: 0,
-    oyuncu1puan19: 0,
-    oyuncu1puan20: 0,
-    oyuncu2puan13: 0,
-    oyuncu2puan14: 0,
-    oyuncu2puan15: 0,
-    oyuncu2puan16: 0,
-    oyuncu2puan17: 0,
-    oyuncu2puan18: 0,
-    oyuncu2puan19: 0,
-    oyuncu2puan20: 0,
-    oyuncu3puan13: 0,
-    oyuncu3puan14: 0,
-    oyuncu3puan15: 0,
-    oyuncu3puan16: 0,
-    oyuncu3puan17: 0,
-    oyuncu3puan18: 0,
-    oyuncu3puan19: 0,
-    oyuncu3puan20: 0,
-    oyuncu4puan13: 0,
-    oyuncu4puan14: 0,
-    oyuncu4puan15: 0,
-    oyuncu4puan16: 0,
-    oyuncu4puan17: 0,
-    oyuncu4puan18: 0,
-    oyuncu4puan19: 0,
-    oyuncu4puan20: 0,
+  SnackBar snackBar = SnackBar(
+    content: const Text("Lütfen Koz seçiniz"),
+    action: SnackBarAction(label: "Tamam", onPressed: () {}),
   );
 
-  int sonikiCounter = 0;
-  int kizCounter = 0;
-  int erkekCounter = 0;
-  int kupaCounter = 0;
-  int rifkiCounter = 0;
-  int elCounter = 0;
-  int kozlarCounter = 0;
+  player1GameTypeCounter(
+      {required int playerGameTypeCounter, required int gameTypeCounter}) {
+    if (sonikiSatir.soniki.player1counter +
+            kizSatir.kiz.player1counter +
+            erkekSatir.erkek.player1counter +
+            kupaSatir.kupa.player1counter +
+            sonikiSatir.soniki.player1counter <
+        3) {
+      sonikiSatir.soniki.player1counter++;
+      gameTypeState.isGameChoosing();
+      gameTypeState.gameSelector(1);
+      gameTypeCounter++;
+    } else {
+      snackBar;
+    }
+  }
 
-  void refreshButton() {
-    setState(() {
-      playerState.whichPlayerIsActive.value = 0;
-      playerState.isPlayerSelected.value = false;
-      gameTypeState.whichGameIsActive.value = 0;
-      gameTypeState.gameChoosing.value = true;
-      gameTypeState.isDuringGame.value = false;
-      gameTypeState.soniki.value = -1;
-      gameTypeState.kiz.value = 1;
-      gameTypeState.erkek.value = 3;
-      gameTypeState.kupa.value = 5;
-      gameTypeState.rifki.value = 7;
-      gameTypeState.el.value = 9;
-      gameTypeState.kozlar.value = 11;
-      puanState.oyuncu1PuanListesi.value = List.generate(20, (index) => 0);
-      puanState.oyuncu2PuanListesi.value = List.generate(20, (index) => 0);
-      puanState.oyuncu3PuanListesi.value = List.generate(20, (index) => 0);
-      puanState.oyuncu4PuanListesi.value = List.generate(20, (index) => 0);
-    });
+  player2GameTypeCounter(
+      {required int playerGameTypeCounter, required int gameTypeCounter}) {
+    if (sonikiSatir.soniki.player2counter +
+            kizSatir.kiz.player2counter +
+            erkekSatir.erkek.player2counter +
+            kupaSatir.kupa.player2counter +
+            sonikiSatir.soniki.player2counter <
+        3) {
+      playerGameTypeCounter++;
+      gameTypeState.isGameChoosing();
+      gameTypeState.gameSelector(1);
+      gameTypeCounter++;
+    } else {
+      snackBar;
+    }
+  }
+
+  player3GameTypeCounter(
+      {required int playerGameTypeCounter, required int gameTypeCounter}) {
+    if (sonikiSatir.soniki.player3counter +
+            kizSatir.kiz.player3counter +
+            erkekSatir.erkek.player3counter +
+            kupaSatir.kupa.player3counter +
+            sonikiSatir.soniki.player3counter <
+        3) {
+      playerGameTypeCounter++;
+      gameTypeState.isGameChoosing();
+      gameTypeState.gameSelector(1);
+      gameTypeCounter++;
+    } else {
+      snackBar;
+    }
+  }
+
+  player4GameTypeCounter(
+      {required int playerGameTypeCounter, required int gameTypeCounter}) {
+    if (sonikiSatir.soniki.player4counter +
+            kizSatir.kiz.player4counter +
+            erkekSatir.erkek.player4counter +
+            kupaSatir.kupa.player4counter +
+            sonikiSatir.soniki.player4counter <
+        3) {
+      playerGameTypeCounter++;
+      gameTypeState.isGameChoosing();
+      gameTypeState.gameSelector(1);
+      gameTypeCounter++;
+    } else {
+      snackBar;
+    }
   }
 
   @override
@@ -282,13 +218,42 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
                             onTap: () {
                               if (gameTypeState.gameChoosing.value) {
                                 if (sonikiSatir.soniki.activatedCounter < 2) {
-                                  gameTypeState.isGameChoosing();
-                                  gameTypeState.gameSelector(1);
-                                  sonikiCounter++;
+                                  switch (
+                                      playerState.whichPlayerIsActive.value) {
+                                    case 1:
+                                      player1GameTypeCounter(
+                                          playerGameTypeCounter:
+                                              sonikiSatir.soniki.player1counter,
+                                          gameTypeCounter: sonikiCounter);
+                                      break;
+                                    case 2:
+                                      player2GameTypeCounter(
+                                          playerGameTypeCounter:
+                                              sonikiSatir.soniki.player2counter,
+                                          gameTypeCounter: sonikiCounter);
+                                      break;
+                                    case 3:
+                                      player3GameTypeCounter(
+                                          playerGameTypeCounter:
+                                              sonikiSatir.soniki.player3counter,
+                                          gameTypeCounter: sonikiCounter);
+                                      break;
+                                    case 4:
+                                      player4GameTypeCounter(
+                                          playerGameTypeCounter:
+                                              sonikiSatir.soniki.player4counter,
+                                          gameTypeCounter: sonikiCounter);
+                                      break;
+                                  }
                                 } else {
                                   null;
                                 }
                               }
+                              print(sonikiSatir.soniki.player1counter +
+                                  kizSatir.kiz.player2counter +
+                                  erkekSatir.erkek.player2counter +
+                                  kupaSatir.kupa.player2counter +
+                                  sonikiSatir.soniki.player2counter);
                             },
                             oyuncu1Puan1: liste1[0] * 180,
                             oyuncu2Puan1: liste2[0] * 180,
@@ -299,157 +264,191 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
                             oyuncu3Puan2: liste3[1] * 180,
                             oyuncu4Puan2: liste4[1] * 180,
                             activatedCounter: sonikiCounter,
+                            player1counter: 0,
+                            player2counter: 0,
+                            player3counter: 0,
+                            player4counter: 0,
                           ),
                           kizSatir = ThirdRow(
-                              oyuncu1puan3: liste1[2] * 100,
-                              oyuncu2puan3: liste2[2] * 100,
-                              oyuncu3puan3: liste3[2] * 100,
-                              oyuncu4puan3: liste4[2] * 100,
-                              oyuncu1puan4: liste1[3] * 100,
-                              oyuncu2puan4: liste2[3] * 100,
-                              oyuncu3puan4: liste3[3] * 100,
-                              oyuncu4puan4: liste4[3] * 100,
-                              onTap: () {
-                                if (gameTypeState.gameChoosing.value) {
-                                  if (kizSatir.kiz.activatedCounter < 2) {
-                                    gameTypeState.isGameChoosing();
-                                    gameTypeState.gameSelector(2);
-                                    kizCounter++;
-                                  } else {
-                                    null;
-                                  }
+                            oyuncu1puan3: liste1[2] * 100,
+                            oyuncu2puan3: liste2[2] * 100,
+                            oyuncu3puan3: liste3[2] * 100,
+                            oyuncu4puan3: liste4[2] * 100,
+                            oyuncu1puan4: liste1[3] * 100,
+                            oyuncu2puan4: liste2[3] * 100,
+                            oyuncu3puan4: liste3[3] * 100,
+                            oyuncu4puan4: liste4[3] * 100,
+                            onTap: () {
+                              if (gameTypeState.gameChoosing.value) {
+                                if (kizSatir.kiz.activatedCounter < 2) {
+                                  gameTypeState.isGameChoosing();
+                                  gameTypeState.gameSelector(2);
+                                  kizCounter++;
+                                } else {
+                                  null;
                                 }
-                              },
-                              activatedCounter: kizCounter),
+                              }
+                            },
+                            activatedCounter: kizCounter,
+                            player1counter: 0,
+                            player2counter: 0,
+                            player3counter: 0,
+                            player4counter: 0,
+                          ),
                           erkekSatir = FourthRow(
-                              oyuncu1puan5: liste1[4] * 60,
-                              oyuncu2puan5: liste2[4] * 60,
-                              oyuncu3puan5: liste3[4] * 60,
-                              oyuncu4puan5: liste4[4] * 60,
-                              oyuncu1puan6: liste1[5] * 60,
-                              oyuncu2puan6: liste2[5] * 60,
-                              oyuncu3puan6: liste3[5] * 60,
-                              oyuncu4puan6: liste4[5] * 60,
-                              onTap: () {
-                                if (gameTypeState.gameChoosing.value) {
-                                  if (erkekSatir.erkek.activatedCounter < 2) {
-                                    gameTypeState.isGameChoosing();
-                                    gameTypeState.gameSelector(3);
-                                    erkekCounter++;
-                                  } else {
-                                    null;
-                                  }
+                            oyuncu1puan5: liste1[4] * 60,
+                            oyuncu2puan5: liste2[4] * 60,
+                            oyuncu3puan5: liste3[4] * 60,
+                            oyuncu4puan5: liste4[4] * 60,
+                            oyuncu1puan6: liste1[5] * 60,
+                            oyuncu2puan6: liste2[5] * 60,
+                            oyuncu3puan6: liste3[5] * 60,
+                            oyuncu4puan6: liste4[5] * 60,
+                            onTap: () {
+                              if (gameTypeState.gameChoosing.value) {
+                                if (erkekSatir.erkek.activatedCounter < 2) {
+                                  gameTypeState.isGameChoosing();
+                                  gameTypeState.gameSelector(3);
+                                  erkekCounter++;
+                                } else {
+                                  null;
                                 }
-                              },
-                              activatedCounter: erkekCounter),
+                              }
+                            },
+                            activatedCounter: erkekCounter,
+                            player1counter: 0,
+                            player2counter: 0,
+                            player3counter: 0,
+                            player4counter: 0,
+                          ),
                           kupaSatir = FifthRow(
-                              oyuncu1puan7: liste1[6] * 30,
-                              oyuncu2puan7: liste2[6] * 30,
-                              oyuncu3puan7: liste3[6] * 30,
-                              oyuncu4puan7: liste4[6] * 30,
-                              oyuncu1puan8: liste1[7] * 30,
-                              oyuncu2puan8: liste2[7] * 30,
-                              oyuncu3puan8: liste3[7] * 30,
-                              oyuncu4puan8: liste4[7] * 30,
-                              onTap: () {
-                                if (gameTypeState.gameChoosing.value) {
-                                  if (kupaSatir.kupa.activatedCounter < 2) {
-                                    gameTypeState.isGameChoosing();
-                                    gameTypeState.gameSelector(4);
-                                    kupaCounter++;
-                                  } else {
-                                    null;
-                                  }
+                            oyuncu1puan7: liste1[6] * 30,
+                            oyuncu2puan7: liste2[6] * 30,
+                            oyuncu3puan7: liste3[6] * 30,
+                            oyuncu4puan7: liste4[6] * 30,
+                            oyuncu1puan8: liste1[7] * 30,
+                            oyuncu2puan8: liste2[7] * 30,
+                            oyuncu3puan8: liste3[7] * 30,
+                            oyuncu4puan8: liste4[7] * 30,
+                            onTap: () {
+                              if (gameTypeState.gameChoosing.value) {
+                                if (kupaSatir.kupa.activatedCounter < 2) {
+                                  gameTypeState.isGameChoosing();
+                                  gameTypeState.gameSelector(4);
+                                  kupaCounter++;
+                                } else {
+                                  null;
                                 }
-                              },
-                              activatedCounter: kupaCounter),
+                              }
+                            },
+                            activatedCounter: kupaCounter,
+                            player1counter: 0,
+                            player2counter: 0,
+                            player3counter: 0,
+                            player4counter: 0,
+                          ),
                           rifkiSatir = SixthRow(
-                              oyuncu1puan9: liste1[8] * 320,
-                              oyuncu2puan9: liste2[8] * 320,
-                              oyuncu3puan9: liste3[8] * 320,
-                              oyuncu4puan9: liste4[8] * 320,
-                              oyuncu1puan10: liste1[9] * 320,
-                              oyuncu2puan10: liste2[9] * 320,
-                              oyuncu3puan10: liste3[9] * 320,
-                              oyuncu4puan10: liste4[9] * 320,
-                              onTap: () {
-                                if (gameTypeState.gameChoosing.value) {
-                                  if (rifkiSatir.rifki.activatedCounter < 2) {
-                                    gameTypeState.isGameChoosing();
-                                    gameTypeState.gameSelector(5);
-                                    rifkiCounter++;
-                                  } else {
-                                    null;
-                                  }
+                            oyuncu1puan9: liste1[8] * 320,
+                            oyuncu2puan9: liste2[8] * 320,
+                            oyuncu3puan9: liste3[8] * 320,
+                            oyuncu4puan9: liste4[8] * 320,
+                            oyuncu1puan10: liste1[9] * 320,
+                            oyuncu2puan10: liste2[9] * 320,
+                            oyuncu3puan10: liste3[9] * 320,
+                            oyuncu4puan10: liste4[9] * 320,
+                            onTap: () {
+                              if (gameTypeState.gameChoosing.value) {
+                                if (rifkiSatir.rifki.activatedCounter < 2) {
+                                  gameTypeState.isGameChoosing();
+                                  gameTypeState.gameSelector(5);
+                                  rifkiCounter++;
+                                } else {
+                                  null;
                                 }
-                              },
-                              activatedCounter: rifkiCounter),
+                              }
+                            },
+                            activatedCounter: rifkiCounter,
+                            player1counter: 0,
+                            player2counter: 0,
+                            player3counter: 0,
+                            player4counter: 0,
+                          ),
                           elSatir = SeventhRow(
-                              oyuncu1puan11: liste1[10] * 50,
-                              oyuncu2puan11: liste2[10] * 50,
-                              oyuncu3puan11: liste3[10] * 50,
-                              oyuncu4puan11: liste4[10] * 50,
-                              oyuncu1puan12: liste1[11] * 50,
-                              oyuncu2puan12: liste2[11] * 50,
-                              oyuncu3puan12: liste3[11] * 50,
-                              oyuncu4puan12: liste4[11] * 50,
-                              onTap: () {
-                                if (gameTypeState.gameChoosing.value) {
-                                  if (elSatir.el.activatedCounter < 2) {
-                                    gameTypeState.isGameChoosing();
-                                    gameTypeState.gameSelector(6);
-                                    elCounter++;
-                                  } else {
-                                    null;
-                                  }
+                            oyuncu1puan11: liste1[10] * 50,
+                            oyuncu2puan11: liste2[10] * 50,
+                            oyuncu3puan11: liste3[10] * 50,
+                            oyuncu4puan11: liste4[10] * 50,
+                            oyuncu1puan12: liste1[11] * 50,
+                            oyuncu2puan12: liste2[11] * 50,
+                            oyuncu3puan12: liste3[11] * 50,
+                            oyuncu4puan12: liste4[11] * 50,
+                            onTap: () {
+                              if (gameTypeState.gameChoosing.value) {
+                                if (elSatir.el.activatedCounter < 2) {
+                                  gameTypeState.isGameChoosing();
+                                  gameTypeState.gameSelector(6);
+                                  elCounter++;
+                                } else {
+                                  null;
                                 }
-                              },
-                              activatedCounter: elCounter),
+                              }
+                            },
+                            activatedCounter: elCounter,
+                            player1counter: 0,
+                            player2counter: 0,
+                            player3counter: 0,
+                            player4counter: 0,
+                          ),
                           kozlarSatir = EighthRow(
-                              oyuncu1puan13: liste1[12],
-                              oyuncu2puan13: liste2[12],
-                              oyuncu3puan13: liste3[12],
-                              oyuncu4puan13: liste4[12],
-                              oyuncu1puan14: liste1[13],
-                              oyuncu2puan14: liste2[13],
-                              oyuncu3puan14: liste3[13],
-                              oyuncu4puan14: liste4[13],
-                              oyuncu1puan15: liste1[14],
-                              oyuncu2puan15: liste2[14],
-                              oyuncu3puan15: liste3[14],
-                              oyuncu4puan15: liste4[14],
-                              oyuncu1puan16: liste1[15],
-                              oyuncu2puan16: liste2[15],
-                              oyuncu3puan16: liste3[15],
-                              oyuncu4puan16: liste4[15],
-                              oyuncu1puan17: liste1[16],
-                              oyuncu2puan17: liste2[16],
-                              oyuncu3puan17: liste3[16],
-                              oyuncu4puan17: liste4[16],
-                              oyuncu1puan18: liste1[17],
-                              oyuncu2puan18: liste2[17],
-                              oyuncu3puan18: liste3[17],
-                              oyuncu4puan18: liste4[17],
-                              oyuncu1puan19: liste1[18],
-                              oyuncu2puan19: liste2[18],
-                              oyuncu3puan19: liste3[18],
-                              oyuncu4puan19: liste4[18],
-                              oyuncu1puan20: liste1[19],
-                              oyuncu2puan20: liste2[19],
-                              oyuncu3puan20: liste3[19],
-                              oyuncu4puan20: liste4[19],
-                              onTap: () {
-                                if (gameTypeState.gameChoosing.value) {
-                                  if (kozlarSatir.kozlar.activatedCounter < 8) {
-                                    gameTypeState.isGameChoosing();
-                                    gameTypeState.gameSelector(7);
-                                    kozlarCounter++;
-                                  } else {
-                                    null;
-                                  }
+                            oyuncu1puan13: liste1[12],
+                            oyuncu2puan13: liste2[12],
+                            oyuncu3puan13: liste3[12],
+                            oyuncu4puan13: liste4[12],
+                            oyuncu1puan14: liste1[13],
+                            oyuncu2puan14: liste2[13],
+                            oyuncu3puan14: liste3[13],
+                            oyuncu4puan14: liste4[13],
+                            oyuncu1puan15: liste1[14],
+                            oyuncu2puan15: liste2[14],
+                            oyuncu3puan15: liste3[14],
+                            oyuncu4puan15: liste4[14],
+                            oyuncu1puan16: liste1[15],
+                            oyuncu2puan16: liste2[15],
+                            oyuncu3puan16: liste3[15],
+                            oyuncu4puan16: liste4[15],
+                            oyuncu1puan17: liste1[16],
+                            oyuncu2puan17: liste2[16],
+                            oyuncu3puan17: liste3[16],
+                            oyuncu4puan17: liste4[16],
+                            oyuncu1puan18: liste1[17],
+                            oyuncu2puan18: liste2[17],
+                            oyuncu3puan18: liste3[17],
+                            oyuncu4puan18: liste4[17],
+                            oyuncu1puan19: liste1[18],
+                            oyuncu2puan19: liste2[18],
+                            oyuncu3puan19: liste3[18],
+                            oyuncu4puan19: liste4[18],
+                            oyuncu1puan20: liste1[19],
+                            oyuncu2puan20: liste2[19],
+                            oyuncu3puan20: liste3[19],
+                            oyuncu4puan20: liste4[19],
+                            onTap: () {
+                              if (gameTypeState.gameChoosing.value) {
+                                if (kozlarSatir.kozlar.activatedCounter < 8) {
+                                  gameTypeState.isGameChoosing();
+                                  gameTypeState.gameSelector(7);
+                                  kozlarCounter++;
+                                } else {
+                                  null;
                                 }
-                              },
-                              activatedCounter: kozlarCounter),
+                              }
+                            },
+                            activatedCounter: kozlarCounter,
+                            player1counter: 0,
+                            player2counter: 0,
+                            player3counter: 0,
+                            player4counter: 0,
+                          ),
                           NinthRow(
                             oyuncu1ceza: puanState.cezaToplam(liste1),
                             oyuncu2ceza: puanState.cezaToplam(liste2),
@@ -483,6 +482,172 @@ class _TekliKingOyunState extends State<TekliKingOyun> {
         },
       ),
     );
+  }
+
+  SecondRow sonikiSatir = SecondRow(
+    onTap: () {},
+    oyuncu1Puan1: 0,
+    oyuncu1Puan2: 0,
+    oyuncu2Puan1: 0,
+    oyuncu2Puan2: 0,
+    oyuncu3Puan1: 0,
+    oyuncu3Puan2: 0,
+    oyuncu4Puan1: 0,
+    oyuncu4Puan2: 0,
+    activatedCounter: 0,
+    player1counter: 0,
+    player2counter: 0,
+    player3counter: 0,
+    player4counter: 0,
+  );
+  ThirdRow kizSatir = ThirdRow(
+    onTap: () {},
+    activatedCounter: 0,
+    oyuncu1puan3: 0,
+    oyuncu1puan4: 0,
+    oyuncu2puan3: 0,
+    oyuncu2puan4: 0,
+    oyuncu3puan3: 0,
+    oyuncu3puan4: 0,
+    oyuncu4puan3: 0,
+    oyuncu4puan4: 0,
+    player1counter: 0,
+    player2counter: 0,
+    player3counter: 0,
+    player4counter: 0,
+  );
+  FourthRow erkekSatir = FourthRow(
+    onTap: () {},
+    activatedCounter: 0,
+    oyuncu1puan5: 0,
+    oyuncu1puan6: 0,
+    oyuncu2puan5: 0,
+    oyuncu2puan6: 0,
+    oyuncu3puan5: 0,
+    oyuncu3puan6: 0,
+    oyuncu4puan5: 0,
+    oyuncu4puan6: 0,
+    player1counter: 0,
+    player2counter: 0,
+    player3counter: 0,
+    player4counter: 0,
+  );
+  FifthRow kupaSatir = FifthRow(
+    onTap: () {},
+    activatedCounter: 0,
+    oyuncu1puan7: 0,
+    oyuncu1puan8: 0,
+    oyuncu2puan7: 0,
+    oyuncu2puan8: 0,
+    oyuncu3puan7: 0,
+    oyuncu3puan8: 0,
+    oyuncu4puan7: 0,
+    oyuncu4puan8: 0,
+    player1counter: 0,
+    player2counter: 0,
+    player3counter: 0,
+    player4counter: 0,
+  );
+  SixthRow rifkiSatir = SixthRow(
+    onTap: () {},
+    activatedCounter: 0,
+    oyuncu1puan10: 0,
+    oyuncu1puan9: 0,
+    oyuncu2puan10: 0,
+    oyuncu2puan9: 0,
+    oyuncu3puan10: 0,
+    oyuncu3puan9: 0,
+    oyuncu4puan10: 0,
+    oyuncu4puan9: 0,
+    player1counter: 0,
+    player2counter: 0,
+    player3counter: 0,
+    player4counter: 0,
+  );
+  SeventhRow elSatir = SeventhRow(
+    onTap: () {},
+    activatedCounter: 0,
+    oyuncu1puan11: 0,
+    oyuncu1puan12: 0,
+    oyuncu2puan11: 0,
+    oyuncu2puan12: 0,
+    oyuncu3puan11: 0,
+    oyuncu3puan12: 0,
+    oyuncu4puan11: 0,
+    oyuncu4puan12: 0,
+    player1counter: 0,
+    player2counter: 0,
+    player3counter: 0,
+    player4counter: 0,
+  );
+  EighthRow kozlarSatir = EighthRow(
+    onTap: () {},
+    activatedCounter: 0,
+    oyuncu1puan13: 0,
+    oyuncu1puan14: 0,
+    oyuncu1puan15: 0,
+    oyuncu1puan16: 0,
+    oyuncu1puan17: 0,
+    oyuncu1puan18: 0,
+    oyuncu1puan19: 0,
+    oyuncu1puan20: 0,
+    oyuncu2puan13: 0,
+    oyuncu2puan14: 0,
+    oyuncu2puan15: 0,
+    oyuncu2puan16: 0,
+    oyuncu2puan17: 0,
+    oyuncu2puan18: 0,
+    oyuncu2puan19: 0,
+    oyuncu2puan20: 0,
+    oyuncu3puan13: 0,
+    oyuncu3puan14: 0,
+    oyuncu3puan15: 0,
+    oyuncu3puan16: 0,
+    oyuncu3puan17: 0,
+    oyuncu3puan18: 0,
+    oyuncu3puan19: 0,
+    oyuncu3puan20: 0,
+    oyuncu4puan13: 0,
+    oyuncu4puan14: 0,
+    oyuncu4puan15: 0,
+    oyuncu4puan16: 0,
+    oyuncu4puan17: 0,
+    oyuncu4puan18: 0,
+    oyuncu4puan19: 0,
+    oyuncu4puan20: 0,
+    player1counter: 0,
+    player2counter: 0,
+    player3counter: 0,
+    player4counter: 0,
+  );
+
+  int sonikiCounter = 0;
+  int kizCounter = 0;
+  int erkekCounter = 0;
+  int kupaCounter = 0;
+  int rifkiCounter = 0;
+  int elCounter = 0;
+  int kozlarCounter = 0;
+
+  void refreshButton() {
+    setState(() {
+      playerState.whichPlayerIsActive.value = 0;
+      playerState.isPlayerSelected.value = false;
+      gameTypeState.whichGameIsActive.value = 0;
+      gameTypeState.gameChoosing.value = true;
+      gameTypeState.isDuringGame.value = false;
+      gameTypeState.soniki.value = -1;
+      gameTypeState.kiz.value = 1;
+      gameTypeState.erkek.value = 3;
+      gameTypeState.kupa.value = 5;
+      gameTypeState.rifki.value = 7;
+      gameTypeState.el.value = 9;
+      gameTypeState.kozlar.value = 11;
+      puanState.oyuncu1PuanListesi.value = List.generate(20, (index) => 0);
+      puanState.oyuncu2PuanListesi.value = List.generate(20, (index) => 0);
+      puanState.oyuncu3PuanListesi.value = List.generate(20, (index) => 0);
+      puanState.oyuncu4PuanListesi.value = List.generate(20, (index) => 0);
+    });
   }
 
   IconButton refresh(BuildContext context) {

@@ -41,6 +41,10 @@ class EighthRow extends StatelessWidget {
     super.key,
     required this.onTap,
     required this.activatedCounter,
+    required this.player1counter,
+    required this.player2counter,
+    required this.player3counter,
+    required this.player4counter,
   });
 
   int oyuncu1puan13,
@@ -78,23 +82,34 @@ class EighthRow extends StatelessWidget {
 
   final VoidCallback onTap;
   final int activatedCounter;
+  final int player1counter, player2counter, player3counter, player4counter;
   GameType kozlar = GameType(
-      gameName: "KOZLAR",
-      queue: 7,
-      onTap: () {},
-      activatedCounter: 0,
-      turnRed: 8);
+    gameName: "KOZLAR",
+    queue: 7,
+    onTap: () {},
+    activatedCounter: 0,
+    turnRed: 8,
+    player1counter: 0,
+    player2counter: 0,
+    player3counter: 0,
+    player4counter: 0,
+  );
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         kozlar = GameType(
-            gameName: "KOZLAR",
-            queue: 7,
-            onTap: onTap,
-            activatedCounter: activatedCounter,
-            turnRed: 8),
+          gameName: "KOZLAR",
+          queue: 7,
+          onTap: onTap,
+          activatedCounter: activatedCounter,
+          turnRed: 8,
+          player1counter: player1counter,
+          player2counter: player2counter,
+          player3counter: player3counter,
+          player4counter: player4counter,
+        ),
         KozPuan(
           playerCoordinate: 1,
           gameCoordinate: 7,

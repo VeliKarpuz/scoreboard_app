@@ -14,12 +14,17 @@ class GameType extends StatelessWidget {
     required this.onTap,
     required this.activatedCounter,
     required this.turnRed,
+    required this.player1counter,
+    required this.player2counter,
+    required this.player3counter,
+    required this.player4counter,
   });
   final String gameName;
   final int queue;
   final int activatedCounter;
   final VoidCallback onTap;
   final int turnRed;
+  int player1counter, player2counter, player3counter, player4counter;
 
   final gameTypeState = getIt.get<GameTypeState>();
 
